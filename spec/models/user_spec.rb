@@ -8,12 +8,14 @@ RSpec.describe User, type: :model do
 
     expect(User.all.count).to eq(0)
   end
+  context 'message' do
+    
+    it 'create new user' do
+      user = User.create email: 'some@gmail.com', password: '1'*8, 
+        password_confirmation: '1'*8
 
-  it 'create new user' do
-    user = User.create email: 'some@gmail.com', password: '1'*8, 
-      password_confirmation: '1'*8
-
-    expect(User.all.count).to eq(1)
+      expect(User.all.count).to eq(1)
+    end
   end
 
 

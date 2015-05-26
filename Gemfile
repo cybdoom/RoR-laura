@@ -30,14 +30,17 @@ gem 'sinatra',       '>= 1.3.0'
 gem 'redis',         '= 3.1.0'
 gem 'sidekiq',       '>= 3.3.0'
 
-
 # Dev tools
+
 group :development, :test do
+  gem 'reqres_rspec'
   gem 'rspec-rails',       '~> 3.0'
   gem 'binding_of_caller', '0.7.2'
   gem 'ruby_parser',       '>= 3.1.1'
   gem 'better_errors',     '>= 0.3.2'
   gem 'pry-nav',           '~> 0.2.4'
+  gem 'pry-rails'
+  gem 'pry'
   gem 'letter_opener',     '~> 1.2.0'
   gem 'rubocop', require: false
   gem 'spring'
