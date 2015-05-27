@@ -55,7 +55,11 @@ CREATE TABLE users (
     current_sign_in_ip inet,
     last_sign_in_ip inet,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    devices jsonb,
+    user_id character varying,
+    password_digest character varying,
+    phone character varying
 );
 
 
@@ -121,4 +125,12 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20150525144201');
+
+INSERT INTO schema_migrations (version) VALUES ('20150527074553');
+
+INSERT INTO schema_migrations (version) VALUES ('20150527095541');
+
+INSERT INTO schema_migrations (version) VALUES ('20150527101151');
+
+INSERT INTO schema_migrations (version) VALUES ('20150527101324');
 

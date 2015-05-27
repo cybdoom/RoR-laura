@@ -1,11 +1,19 @@
-class Users::RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < ApplicationController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
-  # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  # @description Implements first registration step
+  # @param user[:user_id] required String Should be uniq
+  # @param user[:phone_number] required String User's phone nr
+  # @param user[:email] required String User's email
+  # @param user[:password] required String User's password, min length 8 chars
+  # @param user[:password_confirmation] required String User's password confirmation, min length 8 chars
+  def sign_up
+    user_params = params.require(:user).permit(
+      :user_id, :email, :phone, :password, :password_confirmation
+    )
+    respond_with_interaction UserRegistrationInteraction, user_params
+  end
 
   # POST /resource
   # def create

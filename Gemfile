@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
 # Core
-gem 'rails',   '4.2.1'
-gem 'devise',  '3.5.0'
-
+gem 'rails',   '=4.2.1'
+gem 'bcrypt-ruby'
 # Fronend
 gem 'sass-rails',   '~> 5.0'
 gem 'uglifier',     '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails', '4.0.3'
-
+gem 'libv8'
+gem 'therubyracer'
 
 # Database
 gem 'pg', '>= 0.18.1'
@@ -40,7 +40,6 @@ group :development, :test do
   gem 'better_errors',     '>= 0.3.2'
   gem 'pry-nav',           '~> 0.2.4'
   gem 'pry-rails'
-  gem 'pry'
   gem 'letter_opener',     '~> 1.2.0'
   gem 'rubocop', require: false
   gem 'spring'
