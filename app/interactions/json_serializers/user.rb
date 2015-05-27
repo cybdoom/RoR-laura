@@ -11,11 +11,11 @@ class JsonSerializers::User
   private
 
     def to_json
-      @user.to_json
+      @user
     end
 
     def errors_to_json
-      @user.errors.messages.to_json
+      @user.errors.messages
     end
 
 end

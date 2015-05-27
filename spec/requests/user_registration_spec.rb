@@ -25,7 +25,7 @@ RSpec.describe 'Register a new user', type: :request do
     }
 
     post '/users/registrations/sign_up', {user: user_params}, headers
-    response_hash = JSON.parse ActiveSupport::JSON.decode(response.body)
+    response_hash =  JSON.parse(response.body)
 
     expect(response_hash['devices'].first['device_id']).to eq(headers['X-DEVICE-ID'])
     expect(response_hash['email']).to eq(user_params[:email])
@@ -42,12 +42,12 @@ RSpec.describe 'Register a new user', type: :request do
         phone: '111111111111',
         password: '123uu123',
         password_confirmation: '123uu1231'
-
       }
 
       post '/users/registrations/sign_up', {user: user_params}, headers
-      response_hash = JSON.parse ActiveSupport::JSON.decode(response.body)
+      response_hash = JSON.parse(response.body)
 
+      expect(response.status).to eq(422)
       err_msg = "doesn't match Password"
       expect(response_hash['password_confirmation']).to include(err_msg)
     end
@@ -59,12 +59,12 @@ RSpec.describe 'Register a new user', type: :request do
         phone: '111111111111',
         password: '123uu',
         password_confirmation: '123uu'
-
       }
 
       post '/users/registrations/sign_up', {user: user_params}, headers    
-      response_hash = JSON.parse ActiveSupport::JSON.decode(response.body)
-
+      response_hash = JSON.parse(response.body)
+      
+      expect(response.status).to eq(422)
       err_msg = "is too short (minimum is 8 characters)"
       expect(response_hash['password']).to include(err_msg)
     end

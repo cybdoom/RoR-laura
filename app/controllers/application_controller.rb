@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
 
   private
      def respond_with_interaction interaction_class, interaction_params
-       render json: interaction_class.new(interaction_params, request.headers)
+       entity = interaction_class.new(interaction_params, request.headers)
+       render json: entity, status: entity.status_code
      end
     
 end

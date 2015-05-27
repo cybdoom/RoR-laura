@@ -65,6 +65,6 @@ module HeadersMixin
   end
 
   def sliced_headers
-    headers.slice(*MOBILE_HEADERS_KEYS)
+    headers.to_h.slice(*MOBILE_HEADERS_KEYS)
   end
 end
