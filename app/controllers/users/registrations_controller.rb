@@ -16,7 +16,7 @@ class Users::RegistrationsController < ApplicationController
 
   
   # @description Implements an update of user's profile
-  # @param authentication_toke required String Authentication token
+  # @param authentication_token required String Authentication token
   # @param user[phone] required String User's phone number
   # @param user[first_name] required String User's first_name
   # @param user[middle_name] required String User's middle name
@@ -29,6 +29,11 @@ class Users::RegistrationsController < ApplicationController
   # @param user[address] required String User's address
   #
   def update_profile
-    
+    user_params = params.require(:user).permit(
+      :user_id, :email, :phone, :user_id, :first_name, :middle_name, :last_name,
+      :email, :phone, :license_plate_number, :license_plate_state, 
+      :driver_license_state, :state, :address, :driver_license,
+    )
+    respond_with_interaction UpdateUserProfileInteraction, user_params
   end
 end

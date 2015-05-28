@@ -24,9 +24,9 @@ RSpec.describe 'Register a new user', type: :request do
     }
   }
 
-  it 'First step of registration' do
+  it 'First step of registration : account access credentials' do
 
-    post '/users/registrations/sign_up', {user: valid_user_params}, headers
+    post '/users/registrations/sign_up', { user: valid_user_params }, headers
     response_hash =  JSON.parse(response.body)
 
     token = response_hash['current_authentication_token']
@@ -34,6 +34,36 @@ RSpec.describe 'Register a new user', type: :request do
     expect(token.values.first.length).to  eq(32)
     expect(response_hash['email']).to eq(valid_user_params[:email])
 
+  end
+
+  it 'Second step of registration : fill in the profile' do
+    User.delete_all
+    user_params = valid_user_params
+    user_params[:devices] = {"1111111"=>"3f898544c32fe878e46e40e7186364a5"}
+    user = User.create user_params
+
+    profile_params = { 
+      authentication_token: "3f898544c32fe878e46e40e7186364a5",
+      user: {
+        first_name:           'John',
+        middle_name:          'Simon',
+        last_name:            'Smith',
+        license_plate_number: '1'*10,
+        license_plate_state:  'active',
+        driver_license:       'some_driver_license_id',
+        driver_license_state: 'driver_license_state_id',
+        state:                'Washington',
+        address:              'somewhere str, 1',
+      }
+    }
+
+    patch '/users/registrations/update_profile', profile_params, headers
+    response_hash =  JSON.parse(response.body)
+    expect(response_hash['first_name']).to  eq('John')
+    expect(response_hash['state']).to       eq('Washington')
+    
+    
+    User.delete_all
   end
 
   

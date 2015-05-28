@@ -2,13 +2,19 @@ class User < ActiveRecord::Base
 
 # Validations ==================================================================
   has_secure_password
-  validates :password, presence:{ on: :create }, length: {minimum: 8} 
+  validates_confirmation_of :password
+  validates :password, presence:{ on: :create }, length: {minimum: 8, on: :create} 
   validates :user_id, :email, :user_id, :phone, presence: true
   
   validates :email, 
     format: { with: RE_EMAIL, message: I18n.t('user.errors.invalid_email')}
-  
-  attr_accessor :current_authentication_token
+
+ validates :first_name, :middle_name, :last_name, :license_plate_number, 
+   :license_plate_state, :driver_license, :driver_license_state, :state, :address, 
+   length: { minimum: STRING_LENGTH, allow_blank: true }
+
+
+ attr_accessor :current_authentication_token
   
 # Callbacks ===================================================================
   
