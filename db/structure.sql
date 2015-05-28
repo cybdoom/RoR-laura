@@ -59,7 +59,16 @@ CREATE TABLE users (
     devices jsonb,
     user_id character varying,
     password_digest character varying,
-    phone character varying
+    phone character varying,
+    first_name character varying,
+    middle_name character varying,
+    last_name character varying,
+    license_plate_number character varying,
+    license_plate_state character varying,
+    driver_license character varying,
+    driver_license_state character varying,
+    state character varying,
+    address character varying
 );
 
 
@@ -133,4 +142,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150527095541');
 INSERT INTO schema_migrations (version) VALUES ('20150527101151');
 
 INSERT INTO schema_migrations (version) VALUES ('20150527101324');
+
+INSERT INTO schema_migrations (version) VALUES ('20150528075643');
 

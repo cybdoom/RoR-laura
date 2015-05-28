@@ -20,18 +20,21 @@ class UserRegistrationInteraction < Interaction
   private
 
     def create_user params
-      params[:devices] =[{
-        device_id: mobile_device_id,
-        authentication_token: Authentication::Token.new.generate
-      }]
+      
+      params[:devices] = current_authentication_token
 
       @user = User.create params
 
       if @user.valid?
+        @user.current_authentication_token = current_authentication_token
         User.current_user = @user 
         UserNotifier.register_new_user @user
       end
 
+    end
+
+    def current_authentication_token
+      @_auth_token ||={mobile_device_id => Authentication::Token.new.generate}     
     end
 
 end

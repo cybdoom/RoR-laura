@@ -1,4 +1,23 @@
 class JsonSerializers::User
+# Constants ======================================================================
+  USER_ATTRIBUTES = %i{
+    user_id
+    first_name
+    middle_name
+    last_name
+    email
+    phone
+    license_plate_number
+    license_plate_state
+    driver_license
+    driver_license_state
+    state
+    address
+    current_authentication_token
+  }
+
+# Instance methods ===========================================================
+
   def initialize(user)
     @user = user
   end
@@ -11,7 +30,11 @@ class JsonSerializers::User
   private
 
     def to_json
-      @user
+      json = {}
+
+      USER_ATTRIBUTES.each { |attr| json[attr] = @user.send(attr) }
+
+      json
     end
 
     def errors_to_json

@@ -172,47 +172,57 @@
           
             <tr>
               <td>
-                user[
+                user[user_id]
+                
+                  <i class="required">required</i>
                 
               </td>
-              <td></td>
-              <td>:user_id] required String Should be uniq</td>
+              <td>String</td>
+              <td>Should be uniq</td>
             </tr>
           
             <tr>
               <td>
-                user[
+                user[phone]
+                
+                  <i class="required">required</i>
                 
               </td>
-              <td></td>
-              <td>:phone_number] required String User's phone nr</td>
+              <td>String</td>
+              <td>User's phone nr</td>
             </tr>
           
             <tr>
               <td>
-                user[
+                user[email]
+                
+                  <i class="required">required</i>
                 
               </td>
-              <td></td>
-              <td>:email] required String User's email</td>
+              <td>String</td>
+              <td>User's email</td>
             </tr>
           
             <tr>
               <td>
-                user[
+                user[password]
+                
+                  <i class="required">required</i>
                 
               </td>
-              <td></td>
-              <td>:password] required String User's password, min length 8 chars</td>
+              <td>String</td>
+              <td>User's password, min length 8 chars</td>
             </tr>
           
             <tr>
               <td>
-                user[
+                user[password_confirmation]
+                
+                  <i class="required">required</i>
                 
               </td>
-              <td></td>
-              <td>:password_confirmation] required String User's password confirmation, min length 8 chars</td>
+              <td>String</td>
+              <td>User's password confirmation, min length 8 chars</td>
             </tr>
           
         </table>
@@ -224,7 +234,13 @@
     
       <h5>Headers</h5>
       <code>Content-Type: <i>application/x-www-form-urlencoded</i>
-Accept: <i>text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5</i></code>
+Accept: <i>text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5</i>
+X-Device-Id: <i>1111111</i>
+X-Mobile-Platform: <i>IOS</i>
+X-Application-Name: <i>Laura IOS App</i>
+X-Application-Version: <i>1</i>
+X-Device-Time-Zone: <i>+1</i>
+X-Device-Locale: <i>en-us</i></code>
     
 
     <h5>Route</h5>
@@ -280,7 +296,7 @@ Accept: <i>text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/p
     
       <h5>Headers</h5>
       <code>Content-Type: <i>application/json; charset=utf-8</i>
-Content-Length: <i>16</i></code>
+Content-Length: <i>341</i></code>
     
 
     <h5>Status code (<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">wiki</a>)</h5>
@@ -296,9 +312,37 @@ Content-Length: <i>16</i></code>
   <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
 <a href="#n2" name="n2">2</a>
 <a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
+<a href="#n17" name="n17">17</a>
 </pre></td>
   <td class="code"><pre>{
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>sign_up</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">true</span>
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>user_id</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user@gmail.com</span><span style="color:#710">&quot;</span></span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>first_name</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>middle_name</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>last_name</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>email</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user@gmail.com</span><span style="color:#710">&quot;</span></span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>phone</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">111111111111</span><span style="color:#710">&quot;</span></span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>license_plate_number</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>license_plate_state</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>driver_license</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>driver_license_state</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>state</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>address</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>current_authentication_token</span><span style="color:#404">&quot;</span></span>: {
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>1111111</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">51aaa65ca5d286d90cc662ea97e0233a</span><span style="color:#710">&quot;</span></span>
+  }
 }</pre></td>
 </tr></table>
 

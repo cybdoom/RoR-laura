@@ -13,9 +13,8 @@ RSpec.describe 'Register a new user', type: :request do
     }
   }
 
-
-  it 'First step of registration' do
-    user_params = {
+  let (:valid_user_params) {
+    {
       email: 'user@gmail.com',
       user_id: 'user@gmail.com',
       phone: '111111111111',
@@ -23,19 +22,25 @@ RSpec.describe 'Register a new user', type: :request do
       password_confirmation: '123uu123'
       
     }
+  }
 
-    post '/users/registrations/sign_up', {user: user_params}, headers
+  it 'First step of registration' do
+
+    post '/users/registrations/sign_up', {user: valid_user_params}, headers
     response_hash =  JSON.parse(response.body)
 
-    expect(response_hash['devices'].first['device_id']).to eq(headers['X-DEVICE-ID'])
-    expect(response_hash['email']).to eq(user_params[:email])
+    token = response_hash['current_authentication_token']
+    expect(token.keys.first).to eq(headers['X-DEVICE-ID'])
+    expect(token.values.first.length).to  eq(32)
+    expect(response_hash['email']).to eq(valid_user_params[:email])
+
   end
 
-
+  
 
   context 'Registrations Errors' do
     
-    it 'Password and password confirmation are different' do
+    it 'Password and password confirmation are different', :skip_reqres do
       user_params = {
         email: 'user@gmail.com',
         user_id: 'user@gmail.com',
@@ -52,7 +57,7 @@ RSpec.describe 'Register a new user', type: :request do
       expect(response_hash['password_confirmation']).to include(err_msg)
     end
 
-    it 'Password length should be mor than 7 chars' do
+    it 'Password length should be mor than 7 chars', :skip_reqres do
       user_params = {
         email: 'user@gmail.com',
         user_id: 'user@gmail.com',

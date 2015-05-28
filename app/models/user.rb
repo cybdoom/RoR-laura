@@ -7,11 +7,12 @@ class User < ActiveRecord::Base
   
   validates :email, 
     format: { with: RE_EMAIL, message: I18n.t('user.errors.invalid_email')}
- 
+  
+  attr_accessor :current_authentication_token
   
 # Callbacks ===================================================================
   
-  after_initialize ->(rec) { rec.devices ||= [] }
+  after_initialize ->(rec) { rec.devices ||= {} }
 
 # Class methods ===============================================================
   class << self
@@ -23,6 +24,16 @@ class User < ActiveRecord::Base
     def current_user
       Thread.current[:current_user]
     end
+    
 
-  end
+    def find_by_auth_token device_id, token
+      user = where( "devices ->> ? = ?", device_id, token).first
+      User.current_user = user if user
+    end
+  end # Class methods
+
+# Instance methods ===========================================================
+
+  
+
 end
