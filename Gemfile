@@ -19,7 +19,7 @@ gem 'pg', '>= 0.18.1'
 gem 'capistrano-bundler', '>= 1.1.3'
 gem 'capistrano',         '>= 3.2.1'
 gem 'capistrano-rails',   '>= 1.1.1'
-gem 'capistrano-rbenv'
+gem 'capistrano-rvm'
 gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
 gem 'capistrano3-puma', '>= 0.5.1', github: 'seuros/capistrano-puma'
 

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 # Validations ==================================================================
   has_secure_password
   validates_confirmation_of :password
+  validates :email, :phone,  uniqueness: true
   validates :password, presence:{ on: :create }, length: {minimum: 8, on: :create} 
   validates :user_id, :email, :user_id, :phone, presence: true
   
@@ -11,7 +12,7 @@ class User < ActiveRecord::Base
 
  validates :first_name, :middle_name, :last_name, :license_plate_number, 
    :license_plate_state, :driver_license, :driver_license_state, :state, :address, 
-   length: { minimum: STRING_LENGTH, allow_blank: true }
+   length: { maximum: STRING_LENGTH, allow_blank: true }
 
 
  attr_accessor :current_authentication_token
@@ -34,12 +35,25 @@ class User < ActiveRecord::Base
 
     def find_by_auth_token device_id, token
       user = where( "devices ->> ? = ?", device_id, token).first
-      User.current_user = user if user
+      
+      return unless user
+
+      user.current_authentication_token = {device_id => token}
+      User.current_user = user 
+
     end
   end # Class methods
 
 # Instance methods ===========================================================
+  #
+  def error_messages
+    errors.messages
+  end
 
+  def add_auth_token token
+    update devices: devices.merge(token)
+    @current_authentication_token = token
+  end
   
 
 end

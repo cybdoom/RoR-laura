@@ -151,14 +151,14 @@
   <div class="container">
     <h3>
       <a href="spec_doc_table_of_content.html">&#9650</a>
-      <a id=""></a>. Register a new user 
+      <a id=""></a>. Register a new user:  Second step 
     </h3>
 
     <p>
-      Implements an update of user's profile
+      implements second registration step
     </p>
 
-    <code>PATCH /users/registrations/update_profile</code>
+    <code>PATCH /users/registrations</code>
 
     
       <h5>Parameters</h5>
@@ -185,8 +185,6 @@
               <td>
                 user[phone]
                 
-                  <i class="required">required</i>
-                
               </td>
               <td>String</td>
               <td>User's phone number</td>
@@ -195,8 +193,6 @@
             <tr>
               <td>
                 user[first_name]
-                
-                  <i class="required">required</i>
                 
               </td>
               <td>String</td>
@@ -207,8 +203,6 @@
               <td>
                 user[middle_name]
                 
-                  <i class="required">required</i>
-                
               </td>
               <td>String</td>
               <td>User's middle name</td>
@@ -217,8 +211,6 @@
             <tr>
               <td>
                 user[last_name]
-                
-                  <i class="required">required</i>
                 
               </td>
               <td>String</td>
@@ -229,8 +221,6 @@
               <td>
                 user[license_plate_number]
                 
-                  <i class="required">required</i>
-                
               </td>
               <td>String</td>
               <td>User's license plate number</td>
@@ -239,8 +229,6 @@
             <tr>
               <td>
                 user[license_plate_state]
-                
-                  <i class="required">required</i>
                 
               </td>
               <td>String</td>
@@ -251,8 +239,6 @@
               <td>
                 user[driver_license]
                 
-                  <i class="required">required</i>
-                
               </td>
               <td>String</td>
               <td>User's driver license</td>
@@ -261,8 +247,6 @@
             <tr>
               <td>
                 user[driver_license_state]
-                
-                  <i class="required">required</i>
                 
               </td>
               <td>String</td>
@@ -273,8 +257,6 @@
               <td>
                 user[state]
                 
-                  <i class="required">required</i>
-                
               </td>
               <td>String</td>
               <td>User's state</td>
@@ -284,11 +266,9 @@
               <td>
                 user[address]
                 
-                  <i class="required">required</i>
-                
               </td>
               <td>String</td>
-              <td>User's address<br></td>
+              <td>User's address</td>
             </tr>
           
         </table>
@@ -310,7 +290,7 @@ X-Device-Locale: <i>en-us</i></code>
     
 
     <h5>Route</h5>
-    <code>PATCH /users/registrations/update_profile</code>
+    <code>PATCH /users/registrations</code>
 
     <h5>Query parameters</h5>
     
@@ -372,7 +352,7 @@ X-Device-Locale: <i>en-us</i></code>
     
       <h5>Headers</h5>
       <code>Content-Type: <i>application/json; charset=utf-8</i>
-Content-Length: <i>382</i></code>
+Content-Length: <i>424</i></code>
     
 
     <h5>Status code (<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">wiki</a>)</h5>
@@ -400,6 +380,8 @@ Content-Length: <i>382</i></code>
 <a href="#n13" name="n13">13</a>
 <a href="#n14" name="n14">14</a>
 <a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
+<a href="#n17" name="n17">17</a>
 </pre></td>
   <td class="code"><pre>{
   <span style="color:#606"><span style="color:#404">&quot;</span><span>user_id</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user@gmail.com</span><span style="color:#710">&quot;</span></span>,
@@ -414,7 +396,9 @@ Content-Length: <i>382</i></code>
   <span style="color:#606"><span style="color:#404">&quot;</span><span>driver_license_state</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">driver_license_state_id</span><span style="color:#710">&quot;</span></span>,
   <span style="color:#606"><span style="color:#404">&quot;</span><span>state</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Washington</span><span style="color:#710">&quot;</span></span>,
   <span style="color:#606"><span style="color:#404">&quot;</span><span>address</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">somewhere str, 1</span><span style="color:#710">&quot;</span></span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>current_authentication_token</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>current_authentication_token</span><span style="color:#404">&quot;</span></span>: {
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>1111111</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">3f898544c32fe878e46e40e7186364a5</span><span style="color:#710">&quot;</span></span>
+  }
 }</pre></td>
 </tr></table>
 

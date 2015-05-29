@@ -1,4 +1,7 @@
 en:
   user:
+    notifications:
+      sign_out: 'Signed out successfully.'
     errors:
-      invalid_email: 'Invalid E-Mail'
+      invalid_credentials: 'Invalid credentials.'
+      invalid_email: 'Invalid E-Mail.'

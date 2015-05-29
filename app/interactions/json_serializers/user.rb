@@ -38,7 +38,7 @@ class JsonSerializers::User
     end
 
     def errors_to_json
-      @user.errors.messages
+      @user.error_messages
     end
 
 end

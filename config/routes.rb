@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
 
  namespace :users do
-   
+
    # Registrstions
    # Sign up
-   post  '/registrations/sign_up' => 'registrations#sign_up'
+   post  'registrations' => 'registrations#create'
    # Update profile 
-   patch '/registrations/update_profile' => 'registrations#update_profile'
+   patch 'registrations' => 'registrations#update'
+
+   #Sessions
+   #Sign in
+   post   'sessions' => 'sessions#create'
+   delete 'sessions' => 'sessions#destroy'
+   get    'sessions' => 'sessions#profile'
  end
 
  root 'home#index'

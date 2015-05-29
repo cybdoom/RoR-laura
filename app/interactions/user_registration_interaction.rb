@@ -1,19 +1,8 @@
-class UserRegistrationInteraction < Interaction
+class UserRegistrationInteraction < UserInteraction
 
   def initialize(params, headers)
-    @headers = headers
+    super
     create_user params
-  end
-
-  
-  def as_json opts = {}
-    return {} unless mobile_headers_valid? 
-    JsonSerializers::User.new(@user)
-  end
-  
-  
-  def status_code
-    (@user.valid? && mobile_headers_valid?) ? 200 : 422
   end
 
 
