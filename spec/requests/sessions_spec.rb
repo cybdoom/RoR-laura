@@ -25,26 +25,30 @@ RSpec.describe 'User sessions:', type: :request do
 
 
   context 'user actions - ' do
-      
-    let(:auth_token) {  
-      { authentication_token: '3f898544c32fe878e46e40e7186364a5' }
+    let(:token) {   "3f898544c32fe878e46e40e7186364a5"}
+
+    let(:authenticated_headers) { 
+      headers.update 'X-AUTHENTICATION' => token
+    }
+
+    let(:authenticated_device) { 
+      {
+        '1111111' => {
+          platform: 'IOS',
+          app_name: 'Laura IOS App',
+          authentication_token: token
+        }
+      } 
     }
 
     before :each do
       User.delete_all
-      user_params = valid_user_params
-      
-      valid_token = {"1111111"=>auth_token[:authentication_token]}
-      
-      user_params[:devices] = valid_token
-      user = User.create user_params
-      
+      user = User.create valid_user_params.update(devices: authenticated_device)
     end
 
     context 'sign out' do
       it 'a user with valid token' do
-
-        delete '/users/sessions', auth_token, headers
+        delete '/users/sessions', nil, authenticated_headers
         response_hash =  JSON.parse(response.body)
         expect(response_hash['message']).to eq(I18n.t('user.notifications.sign_out'))
       end
@@ -53,7 +57,7 @@ RSpec.describe 'User sessions:', type: :request do
 
     context 'user profile' do
       it 'get a user profile' do
-        get '/users/sessions', auth_token, headers
+        get '/users/sessions', {}, authenticated_headers
 
         response_hash =  JSON.parse(response.body)
         expect(response_hash['email']).to eq(valid_user_params[:email])

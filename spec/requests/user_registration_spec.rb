@@ -23,28 +23,44 @@ RSpec.describe 'Register a new user: ', type: :request do
     }
   }
 
+
   context 'First step' do
     it 'First step' do
       post '/users/registrations', { user: valid_user_params }, headers
       response_hash =  JSON.parse(response.body)
-
-      token = response_hash['current_authentication_token']
-      expect(token.keys.first).to eq(headers['X-DEVICE-ID'])
-      expect(token.values.first.length).to  eq(32)
+      expect(response.status).to eq(200)
       expect(response_hash['email']).to eq(valid_user_params[:email])
+      expect(response_hash['authentication_token'].length).to eq(32)
+    end
 
+    it 'invalid headers sent', :skip_reqres do
+      post '/users/registrations', { user: valid_user_params }
+      response_hash =  JSON.parse(response.body)
+      expect(response.status).to eq(422)
+      expect(response_hash['error']).to eq(I18n.t('user.errors.invalid_headers'))
     end
   end
 
   context 'Second step' do
+    let(:authenticated_headers) { 
+      headers.update 'X-AUTHENTICATION' => "3f898544c32fe878e46e40e7186364a5"
+    }
+
+    let(:authenticated_device) { 
+      {
+        '1111111' => {
+          platform: 'IOS',
+          app_name: 'Laura IOS App',
+          authentication_token: "3f898544c32fe878e46e40e7186364a5"
+        }
+      } 
+    }
+
     it 'Second step' do
       User.delete_all
-      user_params = valid_user_params
-      user_params[:devices] = {"1111111"=>"3f898544c32fe878e46e40e7186364a5"}
-      user = User.create user_params
+      user = User.create valid_user_params.update(devices: authenticated_device)
 
       profile_params = { 
-        authentication_token: "3f898544c32fe878e46e40e7186364a5",
         user: {
           first_name:           'John',
           middle_name:          'Simon',
@@ -58,7 +74,8 @@ RSpec.describe 'Register a new user: ', type: :request do
         }
       }
 
-      patch '/users/registrations', profile_params, headers
+      patch '/users/registrations', profile_params, authenticated_headers
+
       response_hash = JSON.parse(response.body)
       expect(response_hash['first_name']).to  eq('John')
       expect(response_hash['state']).to       eq('Washington')
@@ -85,7 +102,7 @@ RSpec.describe 'Register a new user: ', type: :request do
 
       expect(response.status).to eq(422)
       err_msg = "doesn't match Password"
-      expect(response_hash['password_confirmation']).to include(err_msg)
+      expect(response_hash['error']).to include(err_msg)
     end
 
     it 'Password length should be mor than 7 chars', :skip_reqres do
@@ -102,7 +119,8 @@ RSpec.describe 'Register a new user: ', type: :request do
       
       expect(response.status).to eq(422)
       err_msg = "is too short (minimum is 8 characters)"
-      expect(response_hash['password']).to include(err_msg)
+
+      expect(response_hash['error']).to include(err_msg)
     end
 
   end #context
