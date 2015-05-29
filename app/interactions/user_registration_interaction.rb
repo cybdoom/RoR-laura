@@ -17,7 +17,8 @@ class UserRegistrationInteraction < UserInteraction
       if @user.valid?
         @user.current_authentication_token = current_authentication_token
         User.current_user = @user 
-        UserNotifier.register_new_user @user
+
+        UserNotifier.register_new_user(@user).deliver
       end
 
     end

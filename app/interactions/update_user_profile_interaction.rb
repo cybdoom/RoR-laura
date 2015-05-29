@@ -12,7 +12,7 @@ class UpdateUserProfileInteraction < UserInteraction
 
       @user.update params
 
-      UserNotifier.profile_updated @user if @user.valid?
+      UserNotifier.profile_updated(@user).deliver if @user.valid?
     end
 
 
