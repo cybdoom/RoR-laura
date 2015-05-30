@@ -22,8 +22,10 @@ class ApplicationController < ActionController::Base
   end
 
   def respond_with_interaction interaction_class, interaction_params
-    render json: interaction_class.new(current_user: current_user,
-      headers: request.headers, args: interaction_params).exec
+    interaction = interaction_class.new current_user: current_user,
+      headers: request.headers, args: interaction_params
+    interaction.exec
+    render json: interaction
   end
 
   def respond_with_error message, code = 422

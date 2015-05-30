@@ -3,7 +3,6 @@ class User::ProfileLoadInteraction < Interaction
 
   def exec
     require_current_user!
-    self
   end
 
   def as_json(opts = {})

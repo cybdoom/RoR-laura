@@ -6,8 +6,6 @@ class User::UpdateProfileInteraction < Interaction
     current_user.update @args
     raise InteractionErrors::ActiveModelError.new current_user.errors unless current_user.valid?
     UserNotifier.profile_updated(current_user).deliver_now
-
-    self
   end
 
   def as_json(opts = {})

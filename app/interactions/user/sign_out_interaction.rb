@@ -2,8 +2,6 @@ class User::SignOutInteraction < Interaction
   def exec
     require_current_user!
     current_user.remove_token mobile_device_id
-
-    self
   end
 
   def as_json opts = {}

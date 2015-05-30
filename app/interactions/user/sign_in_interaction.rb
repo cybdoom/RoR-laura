@@ -7,8 +7,6 @@ class User::SignInInteraction < Interaction
     raise InteractionErrors::InvalidUserError.new unless @user
     raise InteractionErrors::InvalidCredentialsError.new unless @user.authenticate(args[:password])
     @user.add_auth_token current_authentication_token
-
-    self
   end
 
   def current_authentication_token

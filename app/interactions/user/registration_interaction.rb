@@ -6,10 +6,8 @@ class User::RegistrationInteraction < Interaction
     @user = User.create args
     raise InteractionErrors::ActiveModelError.new @user.errors unless @user.valid?
     UserNotifier.register_new_user(@user).deliver_now
-
-    self
   end
-  
+
   def session_data
     @_session_data ||= {
       mobile_device_id => {
@@ -18,7 +16,7 @@ class User::RegistrationInteraction < Interaction
       }.update(current_authentication_token)
     }
   end
-  
+
   def current_authentication_token
     @_auth_token ||= { authentication_token: Authentication::Token.new.generate }
   end
