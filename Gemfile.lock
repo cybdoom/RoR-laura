@@ -227,6 +227,7 @@ DEPENDENCIES
   pg (>= 0.18.1)
   pry-nav (~> 0.2.4)
   pry-rails
+  puma
   rails (~> 4.2)
   reqres_rspec
   rspec-rails (~> 3.0)
