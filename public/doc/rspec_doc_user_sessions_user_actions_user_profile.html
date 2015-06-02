@@ -161,29 +161,6 @@
     <code>GET /users/sessions</code>
 
     
-      <h5>Parameters</h5>
-      <div class="table">
-        <table class="params">
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-          </tr>
-          
-            <tr>
-              <td>
-                authentication_token
-                
-                  <i class="required">required</i>
-                
-              </td>
-              <td>String</td>
-              <td>Authentication token</td>
-            </tr>
-          
-        </table>
-      </div>
-    
 
     <h4>Request</h4>
 
@@ -196,7 +173,8 @@ X-Mobile-Platform: <i>IOS</i>
 X-Application-Name: <i>Laura IOS App</i>
 X-Application-Version: <i>1</i>
 X-Device-Time-Zone: <i>+1</i>
-X-Device-Locale: <i>en-us</i></code>
+X-Device-Locale: <i>en-us</i>
+X-Authentication: <i>3f898544c32fe878e46e40e7186364a5</i></code>
     
 
     <h5>Route</h5>
@@ -204,19 +182,7 @@ X-Device-Locale: <i>en-us</i></code>
 
     <h5>Query parameters</h5>
     
-      
-      <code>
-        <table class="CodeRay"><tr>
-  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
-<a href="#n2" name="n2">2</a>
-<a href="#n3" name="n3">3</a>
-</pre></td>
-  <td class="code"><pre>{
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>authentication_token</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">3f898544c32fe878e46e40e7186364a5</span><span style="color:#710">&quot;</span></span>
-}</pre></td>
-</tr></table>
-
-      </code>
+      <code>empty</code>
     
 
     <!--<h5><a href="http://curl.haxx.se/docs/manpage.html">CURL</a> Example</h5>
@@ -232,7 +198,7 @@ X-Device-Locale: <i>en-us</i></code>
     
       <h5>Headers</h5>
       <code>Content-Type: <i>application/json; charset=utf-8</i>
-Content-Length: <i>341</i></code>
+Content-Length: <i>263</i></code>
     
 
     <h5>Status code (<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">wiki</a>)</h5>
@@ -259,9 +225,6 @@ Content-Length: <i>341</i></code>
 <a href="#n12" name="n12">12</a>
 <a href="#n13" name="n13">13</a>
 <a href="#n14" name="n14">14</a>
-<a href="#n15" name="n15">15</a>
-<a href="#n16" name="n16">16</a>
-<a href="#n17" name="n17">17</a>
 </pre></td>
   <td class="code"><pre>{
   <span style="color:#606"><span style="color:#404">&quot;</span><span>user_id</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user@gmail.com</span><span style="color:#710">&quot;</span></span>,
@@ -275,10 +238,7 @@ Content-Length: <i>341</i></code>
   <span style="color:#606"><span style="color:#404">&quot;</span><span>driver_license</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
   <span style="color:#606"><span style="color:#404">&quot;</span><span>driver_license_state</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
   <span style="color:#606"><span style="color:#404">&quot;</span><span>state</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>address</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>current_authentication_token</span><span style="color:#404">&quot;</span></span>: {
-    <span style="color:#606"><span style="color:#404">&quot;</span><span>1111111</span><span style="color:#404">&quot;</span></span>: <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">3f898544c32fe878e46e40e7186364a5</span><span style="color:#710">&quot;</span></span>
-  }
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>address</span><span style="color:#404">&quot;</span></span>: <span style="color:#088">null</span>
 }</pre></td>
 </tr></table>
 

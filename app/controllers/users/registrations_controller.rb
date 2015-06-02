@@ -9,14 +9,14 @@ class Users::RegistrationsController < ApplicationController
   # @param user[password_confirmation] required String User's password confirmation, min length 8 chars
   def create
     user_params = params.require(:user).permit(
-      :user_id, :email, :phone, :password, :password_confirmation
-    )
-    respond_with_interaction UserRegistrationInteraction, user_params
+      :user_id, :email, :phone, :password, :password_confirmation)
+    respond_with_interaction User::RegistrationInteraction, user_params
+
+  rescue InteractionErrors::ActiveModelError => e
+    respond_with_error e.message
   end
 
-  
   # @description implements second registration step
-  # @param authentication_token required String Authentication token
   # @param user[phone] String User's phone number
   # @param user[first_name] String User's first_name
   # @param user[middle_name] String User's middle name
@@ -30,9 +30,14 @@ class Users::RegistrationsController < ApplicationController
   def update
     user_params = params.require(:user).permit(
       :user_id, :email, :phone, :user_id, :first_name, :middle_name, :last_name,
-      :email, :phone, :license_plate_number, :license_plate_state, 
-      :driver_license_state, :state, :address, :driver_license,
-    )
-    respond_with_interaction UpdateUserProfileInteraction, user_params
+      :email, :phone, :license_plate_number, :license_plate_state,
+      :driver_license_state, :state, :address, :driver_license)
+
+    respond_with_interaction User::UpdateProfileInteraction, user_params
+
+  rescue InteractionErrors::ActiveModelError => e
+    respond_with_error e.message
+  rescue InteractionErrors::InvalidUserError
+    respond_with_error 'Invalid user', 403
   end
 end

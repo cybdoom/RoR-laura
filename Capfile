@@ -15,7 +15,7 @@ require 'capistrano/deploy'
 #   https://github.com/capistrano/rails
 #   https://github.com/capistrano/passenger
 #
-require 'capistrano/sidekiq'
+# require 'capistrano/sidekiq'
 require 'capistrano/puma'
 require 'capistrano/rvm'
 # require 'capistrano/rbenv'

@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'laura'
-set :repo_url, 'git@bitbucket.org:maxdevladys/laura.git'
+set :repo_url, 'git@bitbucket.org:logicitsolutions/laura.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

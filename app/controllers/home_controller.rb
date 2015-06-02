@@ -3,4 +3,3 @@ class HomeController < ApplicationController
     render text: 'Welcome to Laura API'
   end
 end
-
