@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe 'User sessions:', type: :request do
 
   let (:headers) {
@@ -25,7 +26,7 @@ RSpec.describe 'User sessions:', type: :request do
 
 
   context 'user actions - ' do
-    let(:token) {   "3f898544c32fe878e46e40e7186364a5"}
+    let(:token) {"3f898544c32fe878e46e40e7186364a5"}
 
     let(:authenticated_headers) { 
       headers.update 'X-AUTHENTICATION' => token

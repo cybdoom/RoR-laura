@@ -1,8 +1,14 @@
 class Users::PasswordsController < ApplicationController
-  # GET /resource/password/new
-  # def new
-  #   super
-  # end
+
+  skip_before_action :authenticate!, only: [:new]
+
+  def new
+    respond_with_interaction User::RequestForNewPassword, params
+
+  rescue InteractionErrors::UserNotFound => e
+    respond_with_error I18n.t('user.errors.user_not_found'), 404
+  
+  end
 
   # POST /resource/password
   # def create

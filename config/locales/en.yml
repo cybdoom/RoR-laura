@@ -2,7 +2,10 @@ en:
   user:
     notifications:
       sign_out: 'Signed out successfully.'
+      password:
+        instructions_sent: 'Password recovery instructions was sent to specified email'
     errors:
       invalid_headers: 'Invalid headers.'
       invalid_credentials: 'Invalid credentials.'
       invalid_email: 'Invalid E-Mail.'
+      user_not_found: 'No user found for given email'
