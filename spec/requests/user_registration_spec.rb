@@ -42,25 +42,25 @@ RSpec.describe 'Register a new user: ', type: :request do
   end
 
   context 'Second step' do
-    let(:authenticated_headers) { 
+    let(:authenticated_headers) {
       headers.update 'X-AUTHENTICATION' => "3f898544c32fe878e46e40e7186364a5"
     }
 
-    let(:authenticated_device) { 
+    let(:authenticated_device) {
       {
         '1111111' => {
           platform: 'IOS',
           app_name: 'Laura IOS App',
           authentication_token: "3f898544c32fe878e46e40e7186364a5"
         }
-      } 
+      }
     }
 
     it 'Second step' do
       User.delete_all
       user = User.create valid_user_params.update(devices: authenticated_device)
 
-      profile_params = { 
+      profile_params = {
         user: {
           first_name:           'John',
           middle_name:          'Simon',
@@ -79,15 +79,15 @@ RSpec.describe 'Register a new user: ', type: :request do
       response_hash = JSON.parse(response.body)
       expect(response_hash['first_name']).to  eq('John')
       expect(response_hash['state']).to       eq('Washington')
-      
+
       User.delete_all
     end
   end
 
-  
+
 
   context 'Registrations Errors' do
-    
+
     it 'Password and password confirmation are different', :skip_reqres do
       user_params = {
         email:                 'user@gmail.com',
@@ -114,9 +114,9 @@ RSpec.describe 'Register a new user: ', type: :request do
         password_confirmation:  '123uu'
       }
 
-      post '/users/registrations', {user: user_params}, headers    
+      post '/users/registrations', {user: user_params}, headers
       response_hash = JSON.parse(response.body)
-      
+
       expect(response.status).to eq(422)
       err_msg = "is too short (minimum is 8 characters)"
 

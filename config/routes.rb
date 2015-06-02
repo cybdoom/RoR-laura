@@ -5,7 +5,6 @@ Rails.application.routes.draw do
    # Registrstions
    # Sign up
    post  'registrations' => 'registrations#create'
-   # Update profile 
    patch 'registrations' => 'registrations#update'
 
    #Sessions
@@ -16,8 +15,9 @@ Rails.application.routes.draw do
 
    #Password recovery
    #Request for recovery
-   get 'password/new' => 'passwords#new'
-   get 'password/edit' => 'passwords#edit', as: :password_recovery_form
+   get 'password/new'  => 'passwords#new'
+   get 'password/edit' => 'passwords#edit',   as: :password_recovery_form
+   patch 'password'     => 'passwords#update', as: :change_password
    
  end
 

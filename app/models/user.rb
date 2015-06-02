@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   has_secure_password
   validates_confirmation_of :password
   validates :email, :phone,  uniqueness: true
-  validates :password, presence:{ on: :create }, length: {minimum: 8, on: :create}
+  validates :password, presence:{ on: :create }
+  validates :password, length: {minimum: 8}, allow_nil: { on: :update }
+
   validates :user_id, :email, :user_id, :phone, presence: true
 
   validates :email,
@@ -41,4 +43,5 @@ class User < ActiveRecord::Base
   def remove_token token
     update devices: devices.except(token)
   end
+
 end

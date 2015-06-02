@@ -1,7 +1,6 @@
 module InteractionErrors
   InvalidUserError = Class.new(StandardError)
   InvalidCredentialsError = Class.new(StandardError)
-  UserNotFound = Class.new(StandardError)
 
   class ActiveModelError < StandardError
     def initialize active_model_errors = nil
