@@ -17,6 +17,8 @@ Rails.application.routes.draw do
    #Password recovery
    #Request for recovery
    get 'password/new' => 'passwords#new'
+   get 'password/edit' => 'passwords#edit', as: :password_recovery_form
+   
  end
 
  root 'home#index'

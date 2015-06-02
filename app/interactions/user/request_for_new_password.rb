@@ -5,7 +5,8 @@ class User::RequestForNewPassword < Interaction
     @current_user = User.find_by email: @args[:email]
     raise InteractionErrors::UserNotFound unless @current_user
 
-    UserNotifier.password_recovery(@current_user).deliver_now
+    @password_recovery_token = @current_user.password_recovery_tokens.create
+    UserNotifier.password_recovery(@current_user, @password_recovery_token).deliver_now
   end
 
   def as_json(opts = {})

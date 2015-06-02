@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     length: { maximum: STRING_LENGTH, allow_blank: true }
 
 
-  # Callbacks ===================================================================
+  has_many :password_recovery_tokens
 
   after_initialize ->(rec) { rec.devices ||= {} }
 

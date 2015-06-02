@@ -1,7 +1,11 @@
 class Users::PasswordsController < ApplicationController
 
-  skip_before_action :authenticate!, only: [:new]
+  skip_before_action :authenticate!, only: [:new, :edit]
+  skip_before_action :validate_headers!, only: [:edit]
+  before_action :validate_token!, only: [:edit]
 
+  # @description serves a password recovery request
+  # @param email required String User's email
   def new
     respond_with_interaction User::RequestForNewPassword, params
 
@@ -10,29 +14,18 @@ class Users::PasswordsController < ApplicationController
   
   end
 
-  # POST /resource/password
-  # def create
-  #   super
-  # end
+  # @description password recovery form
+  # @param token required String Unique password token
+  def edit
+    
+  end
+  
+  private
 
-  # GET /resource/password/edit?reset_password_token=abcdef
-  # def edit
-  #   super
-  # end
-
-  # PUT /resource/password
-  # def update
-  #   super
-  # end
-
-  # protected
-
-  # def after_resetting_password_path_for(resource)
-  #   super(resource)
-  # end
-
-  # The path used after sending reset password instructions
-  # def after_sending_reset_password_instructions_path_for(resource_name)
-  #   super(resource_name)
-  # end
+  def validate_token!
+    @token = PasswordRecoveryToken.find_by token: params[:token]
+    unless @token
+      respond_with_error I18n.t('user.errors.invalid_password_recovery_token')
+    end
+  end
 end
