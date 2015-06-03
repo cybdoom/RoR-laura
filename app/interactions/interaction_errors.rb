@@ -2,6 +2,9 @@ module InteractionErrors
   InvalidUserError = Class.new(StandardError)
   InvalidCredentialsError = Class.new(StandardError)
 
+  CreditCardNotFound = Class.new(StandardError)
+
+
   class ActiveModelError < StandardError
     def initialize active_model_errors = nil
       @active_model_errors = active_model_errors

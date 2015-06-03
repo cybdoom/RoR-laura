@@ -24,7 +24,7 @@ Rails.application.configure do
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       :address              => "smtp.yandex.ru",
@@ -34,6 +34,6 @@ Rails.application.configure do
       :password             => 'laura-no-reply-test',
       :tls                  => true,
       :authentication       => 'plain',
-      enable_starttls_auto: true  
+      enable_starttls_auto: true
   }
 end

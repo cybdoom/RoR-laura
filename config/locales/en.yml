@@ -1,4 +1,8 @@
 en:
+  credit_card:
+    errors:
+      not_found: 'Credit card not found'
+
   user:
     notifications:
       sign_out: 'Signed out successfully.'
