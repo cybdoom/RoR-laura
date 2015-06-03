@@ -1,4 +1,4 @@
-class User::RequestForNewPassword < Interaction
+class User::RequestForNewPassword < InteractionBase
   include User::Serializers
 
   def exec

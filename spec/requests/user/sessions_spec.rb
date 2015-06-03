@@ -13,7 +13,7 @@ RSpec.describe 'User sessions:', type: :request do
       'X-DEVICE-LOCALE'       => 'en-us',
     }
   }
-  
+
   let (:valid_user_params) {
     {
       email:                  'user@gmail.com',
@@ -25,21 +25,21 @@ RSpec.describe 'User sessions:', type: :request do
   }
 
 
-  context 'user actions - ' do
+  context 'actions - ' do
     let(:token) {"3f898544c32fe878e46e40e7186364a5"}
 
-    let(:authenticated_headers) { 
+    let(:authenticated_headers) {
       headers.update 'X-AUTHENTICATION' => token
     }
 
-    let(:authenticated_device) { 
+    let(:authenticated_device) {
       {
         '1111111' => {
           platform: 'IOS',
           app_name: 'Laura IOS App',
           authentication_token: token
         }
-      } 
+      }
     }
 
     before :each do
@@ -68,8 +68,8 @@ RSpec.describe 'User sessions:', type: :request do
   end
 
 
-  context 'Sign in' do
-    
+  context 'actions - sign in' do
+
     before :each do
       User.delete_all
       User.create valid_user_params
@@ -78,7 +78,7 @@ RSpec.describe 'User sessions:', type: :request do
     context 'with phone' do
       it 'invalid', :skip_reqres do
 
-        sign_in_params = { 
+        sign_in_params = {
           auth_credentials: {
             phone:     '12231231231231231231',
             password:  valid_user_params[:password]
@@ -93,7 +93,7 @@ RSpec.describe 'User sessions:', type: :request do
 
       it 'valid' do
 
-        sign_in_params = { 
+        sign_in_params = {
           auth_credentials: {
             phone:     valid_user_params[:phone],
             password:  valid_user_params[:password]
@@ -112,7 +112,7 @@ RSpec.describe 'User sessions:', type: :request do
     context 'with email' do
       it 'invalid', :skip_reqres do
 
-        sign_in_params = { 
+        sign_in_params = {
           auth_credentials: {
             email:     'invalid@email.com',
             password:  valid_user_params[:password]
@@ -127,7 +127,7 @@ RSpec.describe 'User sessions:', type: :request do
 
       it 'valid' do
 
-        sign_in_params = { 
+        sign_in_params = {
           auth_credentials: {
             email:     valid_user_params[:email],
             password:  valid_user_params[:password]
@@ -142,5 +142,5 @@ RSpec.describe 'User sessions:', type: :request do
     end
 
   end
-  
+
 end

@@ -1,4 +1,4 @@
-class User::RegistrationInteraction < Interaction
+class User::RegistrationInteraction < InteractionBase
   include User::Serializers
 
   def exec

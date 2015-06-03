@@ -151,14 +151,14 @@
   <div class="container">
     <h3>
       <a href="spec_doc_table_of_content.html">&#9650</a>
-      <a id=""></a>. User sessions: user actions -  sign out 
+      <a id=""></a>. Credit card: List 
     </h3>
 
     <p>
-      
+      Rendersa list of user's credit cards
     </p>
 
-    <code>DELETE /users/sessions</code>
+    <code>GET /credit_cards</code>
 
     
 
@@ -178,7 +178,7 @@ X-Authentication: <i>3f898544c32fe878e46e40e7186364a5</i></code>
     
 
     <h5>Route</h5>
-    <code>DELETE /users/sessions</code>
+    <code>GET /credit_cards</code>
 
     <h5>Query parameters</h5>
     
@@ -198,7 +198,7 @@ X-Authentication: <i>3f898544c32fe878e46e40e7186364a5</i></code>
     
       <h5>Headers</h5>
       <code>Content-Type: <i>application/json; charset=utf-8</i>
-Content-Length: <i>38</i></code>
+Content-Length: <i>219</i></code>
     
 
     <h5>Status code (<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">wiki</a>)</h5>
@@ -214,10 +214,40 @@ Content-Length: <i>38</i></code>
   <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
 <a href="#n2" name="n2">2</a>
 <a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
+<a href="#n17" name="n17">17</a>
+<a href="#n18" name="n18">18</a>
 </pre></td>
-  <td class="code"><pre>{
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>message</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Signed out successfully.</span><span style="color:#710">&quot;</span></span>
-}</pre></td>
+  <td class="code"><pre>[
+  {
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>cc_number</span><span style="color:#404">&quot;</span></span> : <span style="color:#00D">554433</span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>month</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Dec</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>year</span><span style="color:#404">&quot;</span></span> : <span style="color:#00D">2015</span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>cvv</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">987</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>zipcode</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">7733</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>card_holder_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">John C. Doe</span><span style="color:#710">&quot;</span></span>
+  },
+  {
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>cc_number</span><span style="color:#404">&quot;</span></span> : <span style="color:#00D">112233</span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>month</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Jan</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>year</span><span style="color:#404">&quot;</span></span> : <span style="color:#00D">2014</span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>cvv</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">321</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>zipcode</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">4321</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>card_holder_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">John C. Doe</span><span style="color:#710">&quot;</span></span>
+  }
+]</pre></td>
 </tr></table>
 
         </code>

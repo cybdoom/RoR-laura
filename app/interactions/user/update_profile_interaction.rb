@@ -1,4 +1,4 @@
-class User::UpdateProfileInteraction < Interaction
+class User::UpdateProfileInteraction < InteractionBase
   include User::Serializers
 
   def exec

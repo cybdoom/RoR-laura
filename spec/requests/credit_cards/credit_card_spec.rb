@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Credit card', type: :request do
+describe 'Credit card:', type: :request do
   let (:headers) {
     {
       'X-DEVICE-ID'           => '1111111',
@@ -49,6 +49,7 @@ describe 'Credit card', type: :request do
       }
     }
   }
+
   let(:cc_params_other) {
     {
       credit_card: {
@@ -60,10 +61,11 @@ describe 'Credit card', type: :request do
       }
     }
   }
+
   let(:invalid_cc_params) {
     {
       credit_card: {
-        month: 'Jan',
+        month: 'Jan'*200,
         cvv: 321,
         zipcode: 4321,
         cc_number: ''
@@ -76,38 +78,78 @@ describe 'Credit card', type: :request do
     user = User.create valid_user_params.update(devices: authenticated_device)
   end
 
-  context 'update existing ' do
+
+  context 'List' do
+    it 'list' do
+       User.first.credit_cards.create(cc_params_other[:credit_card])
+       User.first.credit_cards.create(cc_params[:credit_card])
+
+      get credit_cards_path, {}, authenticated_headers
+
+      response_hash =  JSON.parse(response.body)
+      expect(response_hash.length).to eq(2)
+      expect(response.status).to eq(200)
+
+      CreditCard.delete_all
+    end
+  end
+
+  context 'actions - ' do
+
+    let(:credit_card) { User.first.credit_cards.first }
+
     before :each do
       User.first.credit_cards.create cc_params[:credit_card]
     end
 
-    let(:credit_card) { User.first.credit_cards.first }
 
+    context 'delete ' do
 
-    it 'with valid params' do
-      patch credit_card_path(credit_card.id), cc_params_other, authenticated_headers
-      response_hash = JSON.parse(response.body)
+      it 'non-existing credit card', :skip_reqres do
+        delete credit_card_path(12131212), {}, authenticated_headers
+        response_hash = JSON.parse(response.body)
 
-      card = cc_params_other[:credit_card]
-      expect(response_hash['year']).to  eq(card[:year])
-      expect(response_hash['cvv']).to  eq(card[:cvv].to_s)
-      expect(response_hash['cc_number']).to  eq(card[:cc_number])
-    end
+        expect(response.status).to eq(404)
+        expect(response_hash['error']).to  eq(I18n.t('credit_card.errors.not_found'))
+      end
 
-    it 'unexisting card', :skip_reqres do
-      patch credit_card_path(232323), invalid_cc_params, authenticated_headers
-      response_hash = JSON.parse(response.body)
+      it 'with valid params' do
+        delete credit_card_path(credit_card.id), {}, authenticated_headers
+        response_hash = JSON.parse(response.body)
 
-      expect(response.status).to eq(404)
-    end
+        expect(response_hash['message']).to  eq(I18n.t('credit_card.notifications.destroyed'))
+      end
+    end #delete
 
-    it 'with invalid params', :skip_reqres do
-      patch credit_card_path(credit_card.id), invalid_cc_params, authenticated_headers
-      response_hash = JSON.parse(response.body)
+    context 'update ' do
 
-      expect(response.status).to eq(422)
+      it 'with valid params' do
+        patch credit_card_path(credit_card.id), cc_params_other, authenticated_headers
+        response_hash = JSON.parse(response.body)
+
+        card = cc_params_other[:credit_card]
+        expect(response_hash['year']).to  eq(card[:year])
+        expect(response_hash['cvv']).to  eq(card[:cvv].to_s)
+        expect(response_hash['cc_number']).to  eq(card[:cc_number])
+      end
+
+      it 'non-existing card', :skip_reqres do
+        patch credit_card_path(232323), invalid_cc_params, authenticated_headers
+        response_hash = JSON.parse(response.body)
+
+        expect(response.status).to eq(404)
+      end
+
+      it 'with invalid params', :skip_reqres do
+        patch credit_card_path(credit_card.id), invalid_cc_params, authenticated_headers
+        response_hash = JSON.parse(response.body)
+
+        expect(response.status).to eq(422)
+      end
     end
   end
+
+
 
 
   context 'create new ' do

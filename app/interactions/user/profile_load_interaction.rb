@@ -1,4 +1,4 @@
-class User::ProfileLoadInteraction < Interaction
+class User::ProfileLoadInteraction < InteractionBase
   include User::Serializers
 
   def exec

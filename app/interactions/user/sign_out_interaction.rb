@@ -1,4 +1,4 @@
-class User::SignOutInteraction < Interaction
+class User::SignOutInteraction < InteractionBase
   def exec
     require_current_user!
     current_user.remove_token mobile_device_id

@@ -1,5 +1,7 @@
 en:
   credit_card:
+    notifications:
+      destroyed: 'Credit card was successfully destroyed'
     errors:
       not_found: 'Credit card not found'
 

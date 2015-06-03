@@ -151,15 +151,38 @@
   <div class="container">
     <h3>
       <a href="spec_doc_table_of_content.html">&#9650</a>
-      <a id=""></a>. User sessions: user actions -  user profile 
+      <a id=""></a>. Credit card: actions -  delete  
     </h3>
 
     <p>
-      User's profile
+      Deletes existing credit card by given id
     </p>
 
-    <code>GET /users/sessions</code>
+    <code>DELETE /credit_cards/:id</code>
 
+    
+      <h5>Parameters</h5>
+      <div class="table">
+        <table class="params">
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+          
+            <tr>
+              <td>
+                id
+                
+                  <i class="required">required</i>
+                
+              </td>
+              <td>Integer</td>
+              <td>ID of existing credit card</td>
+            </tr>
+          
+        </table>
+      </div>
     
 
     <h4>Request</h4>
@@ -178,11 +201,23 @@ X-Authentication: <i>3f898544c32fe878e46e40e7186364a5</i></code>
     
 
     <h5>Route</h5>
-    <code>GET /users/sessions</code>
+    <code>DELETE /credit_cards/501</code>
 
     <h5>Query parameters</h5>
     
-      <code>empty</code>
+      
+      <code>
+        <table class="CodeRay"><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+</pre></td>
+  <td class="code"><pre>{
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">501</span><span style="color:#710">&quot;</span></span>
+}</pre></td>
+</tr></table>
+
+      </code>
     
 
     <!--<h5><a href="http://curl.haxx.se/docs/manpage.html">CURL</a> Example</h5>
@@ -198,7 +233,7 @@ X-Authentication: <i>3f898544c32fe878e46e40e7186364a5</i></code>
     
       <h5>Headers</h5>
       <code>Content-Type: <i>application/json; charset=utf-8</i>
-Content-Length: <i>263</i></code>
+Content-Length: <i>52</i></code>
     
 
     <h5>Status code (<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">wiki</a>)</h5>
@@ -214,31 +249,9 @@ Content-Length: <i>263</i></code>
   <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
 <a href="#n2" name="n2">2</a>
 <a href="#n3" name="n3">3</a>
-<a href="#n4" name="n4">4</a>
-<a href="#n5" name="n5">5</a>
-<a href="#n6" name="n6">6</a>
-<a href="#n7" name="n7">7</a>
-<a href="#n8" name="n8">8</a>
-<a href="#n9" name="n9">9</a>
-<strong><a href="#n10" name="n10">10</a></strong>
-<a href="#n11" name="n11">11</a>
-<a href="#n12" name="n12">12</a>
-<a href="#n13" name="n13">13</a>
-<a href="#n14" name="n14">14</a>
 </pre></td>
   <td class="code"><pre>{
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>user_id</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user@gmail.com</span><span style="color:#710">&quot;</span></span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>first_name</span><span style="color:#404">&quot;</span></span> : <span style="color:#088">null</span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>middle_name</span><span style="color:#404">&quot;</span></span> : <span style="color:#088">null</span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>last_name</span><span style="color:#404">&quot;</span></span> : <span style="color:#088">null</span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>email</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">user@gmail.com</span><span style="color:#710">&quot;</span></span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>phone</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">111111111111</span><span style="color:#710">&quot;</span></span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>license_plate_number</span><span style="color:#404">&quot;</span></span> : <span style="color:#088">null</span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>license_plate_state</span><span style="color:#404">&quot;</span></span> : <span style="color:#088">null</span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>driver_license</span><span style="color:#404">&quot;</span></span> : <span style="color:#088">null</span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>driver_license_state</span><span style="color:#404">&quot;</span></span> : <span style="color:#088">null</span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>state</span><span style="color:#404">&quot;</span></span> : <span style="color:#088">null</span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>address</span><span style="color:#404">&quot;</span></span> : <span style="color:#088">null</span>
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>message</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Credit card was successfully destroyed</span><span style="color:#710">&quot;</span></span>
 }</pre></td>
 </tr></table>
 

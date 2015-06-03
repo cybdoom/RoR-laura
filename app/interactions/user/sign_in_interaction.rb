@@ -1,4 +1,4 @@
-class User::SignInInteraction < Interaction
+class User::SignInInteraction < InteractionBase
   include User::Serializers
 
   def exec
@@ -16,6 +16,7 @@ class User::SignInInteraction < Interaction
   end
 
   def as_json opts = {}
-    serialize_user @user
+    serialize_user(@user).
+      update(authentication_token: current_authentication_token.values.first)
   end
 end

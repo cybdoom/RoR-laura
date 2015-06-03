@@ -1,6 +1,7 @@
 class CreditCardsController < ApplicationController
+  # @description Rendersa list of user's credit cards
   def index
-
+    respond_with_interaction CreditCard::Index, params
   end
 
 
@@ -31,8 +32,15 @@ class CreditCardsController < ApplicationController
     respond_with_error e.message
   end
 
-  def destroy
 
+  # @description Deletes existing credit card by given id
+  # @param id required Integer ID of existing credit card
+  def destroy
+    respond_with_interaction CreditCard::Destroy, params
+  rescue InteractionErrors::CreditCardNotFound
+    respond_with_error I18n.t('credit_card.errors.not_found'), 404
+  rescue InteractionErrors::ActiveModelError => e
+    respond_with_error e.message
   end
 
   private

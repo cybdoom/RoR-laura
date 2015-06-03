@@ -1,4 +1,4 @@
-class Interaction
+class InteractionBase
   include HeadersMixin
   include InteractionErrors
   attr_accessor :current_user, :headers, :args
