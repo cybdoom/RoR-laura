@@ -1,10 +1,7 @@
 <div class="container">
   <%= form_tag users_change_password_path, method: :patch, class: 'form-password-recovery' do%>
-
     <%= hidden_field_tag :token, @token.token %>
     <h2 class="form-password-recovery-heading">Password recovery</h2>
-
-
     <%= password_field_tag 'user[password]', nil, placeholder: 'Password',
       required: true, autofocus: true, class: 'form-control' %>
     <% if errors = @token.password_errors  %>

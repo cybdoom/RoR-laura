@@ -18,11 +18,14 @@ Rails.application.routes.draw do
    get 'password/new'  => 'passwords#new'
    get 'password/edit' => 'passwords#edit',   as: :password_recovery_form
    patch 'password'     => 'passwords#update', as: :change_password
-   
+
  end
 
+#  Credit Cards
+ resources :credit_cards, only: [:create, :update, :destroy, :index]
+
  root 'home#index'
-    
+
 
 end
 

@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
 
-  # Validations ==================================================================
   has_secure_password
   validates_confirmation_of :password
   validates :email, :phone,  uniqueness: true
@@ -18,10 +17,11 @@ class User < ActiveRecord::Base
 
 
   has_many :password_recovery_tokens
+  has_many :credit_cards
 
   after_initialize ->(rec) { rec.devices ||= {} }
 
-  # Class methods ===============================================================
+
   class << self
     def find_by_auth_token device_id, token
       user = where( "devices -> ? ->> 'authentication_token' = ?", device_id, token).first
@@ -30,8 +30,15 @@ class User < ActiveRecord::Base
     end
   end # Class methods
 
-  # Instance methods ===========================================================
-  #
+  def full_name
+    "#{first_name} #{middle_name} #{last_name}"
+  end
+
+  def new_password_recovery_token
+    password_recovery_tokens.destroy_all
+    password_recovery_tokens.create email: email
+  end
+
   def error_messages
     errors.messages
   end
