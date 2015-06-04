@@ -38,6 +38,18 @@ describe 'ACH Payment:', type: :request do
     }
   }
 
+  let(:another_valid_ach_payment_params) {
+    {
+      ach_payment: {
+        account_nr: '4433555'.reverse,
+        routing_nr: '4433555',
+        first_name: valid_user_params[:first_name],
+        middle_name: valid_user_params[:middle_name],
+        last_name: valid_user_params[:last_name],
+      }
+    }
+  }
+
   let(:valid_ach_payment_params) {
     {
       ach_payment: {
@@ -61,6 +73,19 @@ describe 'ACH Payment:', type: :request do
   before :each do
     User.delete_all
     user = User.create valid_user_params.update(devices: authenticated_device)
+  end
+
+  context 'List' do
+    it 'get list' do
+      User.first.ach_payments.create another_valid_ach_payment_params[:ach_payment]
+      User.first.ach_payments.create valid_ach_payment_params[:ach_payment]
+
+      get ach_payments_path, {}, authenticated_headers
+      response_hash =  JSON.parse(response.body)
+
+      expect(response.status).to eq(200)
+      expect(response_hash.length).to eq(2)
+    end
   end
 
   context 'create new' do

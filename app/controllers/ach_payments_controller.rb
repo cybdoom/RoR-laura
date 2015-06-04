@@ -13,6 +13,11 @@ class AchPaymentsController < ApplicationController
   end
 
 
+  # @description Returns list of payments
+  def index
+    respond_with_interaction AchPayment::Index, params
+  end
+
   private
 
   def ach_payment_params

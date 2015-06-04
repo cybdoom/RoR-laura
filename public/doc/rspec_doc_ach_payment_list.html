@@ -151,38 +151,15 @@
   <div class="container">
     <h3>
       <a href="spec_doc_table_of_content.html">&#9650</a>
-      <a id=""></a>. Credit card: actions -  delete  
+      <a id=""></a>. ACH Payment: List 
     </h3>
 
     <p>
-      Deletes existing credit card by given id
+      Returns list of payments
     </p>
 
-    <code>DELETE /credit_cards/:id</code>
+    <code>GET /ach_payments</code>
 
-    
-      <h5>Parameters</h5>
-      <div class="table">
-        <table class="params">
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-          </tr>
-          
-            <tr>
-              <td>
-                id
-                
-                  <i class="required">required</i>
-                
-              </td>
-              <td>Integer</td>
-              <td>ID of existing credit card</td>
-            </tr>
-          
-        </table>
-      </div>
     
 
     <h4>Request</h4>
@@ -201,23 +178,11 @@ X-Authentication: <i>3f898544c32fe878e46e40e7186364a5</i></code>
     
 
     <h5>Route</h5>
-    <code>DELETE /credit_cards/12</code>
+    <code>GET /ach_payments</code>
 
     <h5>Query parameters</h5>
     
-      
-      <code>
-        <table class="CodeRay"><tr>
-  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
-<a href="#n2" name="n2">2</a>
-<a href="#n3" name="n3">3</a>
-</pre></td>
-  <td class="code"><pre>{
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>id</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">12</span><span style="color:#710">&quot;</span></span>
-}</pre></td>
-</tr></table>
-
-      </code>
+      <code>empty</code>
     
 
     <!--<h5><a href="http://curl.haxx.se/docs/manpage.html">CURL</a> Example</h5>
@@ -233,7 +198,7 @@ X-Authentication: <i>3f898544c32fe878e46e40e7186364a5</i></code>
     
       <h5>Headers</h5>
       <code>Content-Type: <i>application/json; charset=utf-8</i>
-Content-Length: <i>52</i></code>
+Content-Length: <i>213</i></code>
     
 
     <h5>Status code (<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">wiki</a>)</h5>
@@ -249,10 +214,36 @@ Content-Length: <i>52</i></code>
   <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
 <a href="#n2" name="n2">2</a>
 <a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
 </pre></td>
-  <td class="code"><pre>{
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>message</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Credit card was successfully destroyed</span><span style="color:#710">&quot;</span></span>
-}</pre></td>
+  <td class="code"><pre>[
+  {
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>routing_nr</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">4433555</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>account_nr</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">5553344</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>first_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">John</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>middle_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">C.</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>last_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Doe</span><span style="color:#710">&quot;</span></span>
+  },
+  {
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>routing_nr</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">12345678</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>account_nr</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">87654321</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>first_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">John</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>middle_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">C.</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>last_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Doe</span><span style="color:#710">&quot;</span></span>
+  }
+]</pre></td>
 </tr></table>
 
         </code>
