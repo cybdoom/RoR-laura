@@ -86,6 +86,7 @@ describe 'Credit card:', type: :request do
 
       get credit_cards_path, {}, authenticated_headers
 
+
       response_hash =  JSON.parse(response.body)
       expect(response_hash.length).to eq(2)
       expect(response.status).to eq(200)
