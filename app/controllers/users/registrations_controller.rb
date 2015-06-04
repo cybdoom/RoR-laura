@@ -38,6 +38,6 @@ class Users::RegistrationsController < ApplicationController
   rescue InteractionErrors::ActiveModelError => e
     respond_with_error e.message
   rescue InteractionErrors::InvalidUserError
-    respond_with_error 'Invalid user', 403
+    respond_with_error I18n.t('user.errors.invalid_user'), 403
   end
 end

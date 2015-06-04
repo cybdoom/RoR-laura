@@ -19,4 +19,7 @@ module User::Serializers
     USER_ATTRIBUTES.inject({}){ |a,m| a.update m => user.send(m) }
   end
 
+  def serialize_user_general_info user
+    serialize_user(user).slice :first_name, :middle_name, :last_name, :address
+  end
 end

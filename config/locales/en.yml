@@ -1,4 +1,5 @@
 en:
+  welcome: 'Welcome to Laura API'
   credit_card:
     notifications:
       destroyed: 'Credit card was successfully destroyed'
@@ -11,6 +12,7 @@ en:
       password:
         instructions_sent: 'Password recovery instructions was sent to specified email'
     errors:
+      invalid_user: 'Invalid user'
       invalid_headers: 'Invalid headers.'
       invalid_credentials: 'Invalid credentials.'
       invalid_email: 'Invalid E-Mail.'

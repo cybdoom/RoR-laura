@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  def index
-    render text: 'Welcome to Laura API'
+  def dashboard
+    render text: I18n.t('welcome')
   end
 end

@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 
   has_many :password_recovery_tokens
   has_many :credit_cards
+  has_many :ach_payments
 
   after_initialize ->(rec) { rec.devices ||= {} }
 

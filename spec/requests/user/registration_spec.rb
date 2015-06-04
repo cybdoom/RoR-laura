@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Register a new user - ', type: :request do
+RSpec.describe 'Register a new user', type: :request do
 
   let (:headers) {
     {
