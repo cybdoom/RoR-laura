@@ -41,7 +41,11 @@ describe 'ACH Payment:', type: :request do
   let(:valid_ach_payment_params) {
     {
       ach_payment: {
-        routing: '12345678'
+        account_nr: '12345678'.reverse,
+        routing_nr: '12345678',
+        first_name: valid_user_params[:first_name],
+        middle_name: valid_user_params[:middle_name],
+        last_name: valid_user_params[:last_name],
       }
     }
   }
@@ -49,7 +53,7 @@ describe 'ACH Payment:', type: :request do
   let(:invalid_ach_payment_params) {
     {
       ach_payment: {
-        routing: '12345678'*300
+        routing_nr: '12345678'*300
       }
     }
   }
@@ -66,7 +70,7 @@ describe 'ACH Payment:', type: :request do
 
       ach_payment = valid_ach_payment_params[:ach_payment]
       expect(response.status).to eq(200)
-      expect(response_hash['routing']).to eq(ach_payment[:routing])
+      expect(response_hash['routing_nr']).to eq(ach_payment[:routing_nr])
       expect(response_hash['address']).to eq(valid_user_params[:address])
       expect(response_hash['first_name']).to eq(valid_user_params[:first_name])
 
@@ -78,7 +82,6 @@ describe 'ACH Payment:', type: :request do
 
       ach_payment = valid_ach_payment_params[:ach_payment]
       expect(response.status).to eq(422)
-      expect(response_hash['error']).to eq( "Routing is too long (maximum is 255 characters)")
 
     end
   end

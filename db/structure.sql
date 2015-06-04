@@ -35,10 +35,14 @@ SET default_with_oids = false;
 
 CREATE TABLE ach_payments (
     id integer NOT NULL,
-    routing character varying,
+    routing_nr character varying,
     user_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    middle_name character varying,
+    first_name character varying,
+    last_name character varying,
+    account_nr character varying
 );
 
 
@@ -296,4 +300,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150602100209');
 INSERT INTO schema_migrations (version) VALUES ('20150602162951');
 
 INSERT INTO schema_migrations (version) VALUES ('20150604083941');
+
+INSERT INTO schema_migrations (version) VALUES ('20150604142801');
 

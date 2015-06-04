@@ -1,6 +1,10 @@
 module AchPayment::Serializers
   ACH_PAYMENT_ATTRIBUTES = %i(
-    routing
+    routing_nr
+    account_nr
+    first_name
+    middle_name
+    last_name
   )
 
   def serialize_ach_payment ach_payment

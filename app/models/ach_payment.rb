@@ -1,7 +1,7 @@
 class AchPayment < ActiveRecord::Base
 
-  validates_presence_of :routing
-  validates :routing, length: { maximum: STRING_LENGTH }
+  validates :routing_nr, :first_name, :last_name, :middle_name, :account_nr,
+    length: { maximum: STRING_LENGTH }, presence: true
   belongs_to :user
 
 end

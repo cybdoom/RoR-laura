@@ -172,7 +172,51 @@
           
             <tr>
               <td>
-                ach_payment[routing]
+                ach_payment[routing_nr]
+                
+                  <i class="required">required</i>
+                
+              </td>
+              <td>String</td>
+              <td>Routing</td>
+            </tr>
+          
+            <tr>
+              <td>
+                ach_payment[account_nr]
+                
+                  <i class="required">required</i>
+                
+              </td>
+              <td>String</td>
+              <td>Routing</td>
+            </tr>
+          
+            <tr>
+              <td>
+                ach_payment[first_name]
+                
+                  <i class="required">required</i>
+                
+              </td>
+              <td>String</td>
+              <td>Routing</td>
+            </tr>
+          
+            <tr>
+              <td>
+                ach_payment[middle_name]
+                
+                  <i class="required">required</i>
+                
+              </td>
+              <td>String</td>
+              <td>Routing</td>
+            </tr>
+          
+            <tr>
+              <td>
+                ach_payment[last_name]
                 
                   <i class="required">required</i>
                 
@@ -213,10 +257,18 @@ X-Authentication: <i>3f898544c32fe878e46e40e7186364a5</i></code>
 <a href="#n3" name="n3">3</a>
 <a href="#n4" name="n4">4</a>
 <a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
 </pre></td>
   <td class="code"><pre>{
   <span style="color:#606"><span style="color:#404">&quot;</span><span>ach_payment</span><span style="color:#404">&quot;</span></span> : {
-    <span style="color:#606"><span style="color:#404">&quot;</span><span>routing</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">12345678</span><span style="color:#710">&quot;</span></span>
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>account_nr</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">87654321</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>routing_nr</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">12345678</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>first_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">John</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>middle_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">C.</span><span style="color:#710">&quot;</span></span>,
+    <span style="color:#606"><span style="color:#404">&quot;</span><span>last_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Doe</span><span style="color:#710">&quot;</span></span>
   }
 }</pre></td>
 </tr></table>
@@ -234,7 +286,7 @@ X-Authentication: <i>3f898544c32fe878e46e40e7186364a5</i></code>
         <table class="CodeRay"><tr>
   <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
 </pre></td>
-  <td class="code"><pre><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">c</span><span style="color:#F00;background-color:#FAA">h</span><span style="color:#F00;background-color:#FAA">_</span><span style="color:#F00;background-color:#FAA">p</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">y</span><span style="color:#F00;background-color:#FAA">m</span><span style="color:#F00;background-color:#FAA">e</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">t</span>[<span style="color:#F00;background-color:#FAA">r</span><span style="color:#F00;background-color:#FAA">o</span><span style="color:#F00;background-color:#FAA">u</span><span style="color:#F00;background-color:#FAA">t</span><span style="color:#F00;background-color:#FAA">i</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">g</span>]<span style="color:#F00;background-color:#FAA">=</span><span style="color:#00D">12345678</span></pre></td>
+  <td class="code"><pre><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">c</span><span style="color:#F00;background-color:#FAA">h</span><span style="color:#F00;background-color:#FAA">_</span><span style="color:#F00;background-color:#FAA">p</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">y</span><span style="color:#F00;background-color:#FAA">m</span><span style="color:#F00;background-color:#FAA">e</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">t</span>[<span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">c</span><span style="color:#F00;background-color:#FAA">c</span><span style="color:#F00;background-color:#FAA">o</span><span style="color:#F00;background-color:#FAA">u</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">t</span><span style="color:#F00;background-color:#FAA">_</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">r</span>]<span style="color:#F00;background-color:#FAA">=</span><span style="color:#00D">87654321</span><span style="color:#F00;background-color:#FAA">&amp;</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">c</span><span style="color:#F00;background-color:#FAA">h</span><span style="color:#F00;background-color:#FAA">_</span><span style="color:#F00;background-color:#FAA">p</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">y</span><span style="color:#F00;background-color:#FAA">m</span><span style="color:#F00;background-color:#FAA">e</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">t</span>[<span style="color:#F00;background-color:#FAA">r</span><span style="color:#F00;background-color:#FAA">o</span><span style="color:#F00;background-color:#FAA">u</span><span style="color:#F00;background-color:#FAA">t</span><span style="color:#F00;background-color:#FAA">i</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">g</span><span style="color:#F00;background-color:#FAA">_</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">r</span>]<span style="color:#F00;background-color:#FAA">=</span><span style="color:#00D">12345678</span><span style="color:#F00;background-color:#FAA">&amp;</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">c</span><span style="color:#F00;background-color:#FAA">h</span><span style="color:#F00;background-color:#FAA">_</span><span style="color:#F00;background-color:#FAA">p</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">y</span><span style="color:#F00;background-color:#FAA">m</span><span style="color:#F00;background-color:#FAA">e</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">t</span>[<span style="color:#F00;background-color:#FAA">f</span><span style="color:#F00;background-color:#FAA">i</span><span style="color:#F00;background-color:#FAA">r</span><span style="color:#F00;background-color:#FAA">s</span><span style="color:#F00;background-color:#FAA">t</span><span style="color:#F00;background-color:#FAA">_</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">m</span><span style="color:#F00;background-color:#FAA">e</span>]<span style="color:#F00;background-color:#FAA">=</span><span style="color:#F00;background-color:#FAA">J</span><span style="color:#F00;background-color:#FAA">o</span><span style="color:#F00;background-color:#FAA">h</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">&amp;</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">c</span><span style="color:#F00;background-color:#FAA">h</span><span style="color:#F00;background-color:#FAA">_</span><span style="color:#F00;background-color:#FAA">p</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">y</span><span style="color:#F00;background-color:#FAA">m</span><span style="color:#F00;background-color:#FAA">e</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">t</span>[<span style="color:#F00;background-color:#FAA">m</span><span style="color:#F00;background-color:#FAA">i</span><span style="color:#F00;background-color:#FAA">d</span><span style="color:#F00;background-color:#FAA">d</span><span style="color:#F00;background-color:#FAA">l</span><span style="color:#F00;background-color:#FAA">e</span><span style="color:#F00;background-color:#FAA">_</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">m</span><span style="color:#F00;background-color:#FAA">e</span>]<span style="color:#F00;background-color:#FAA">=</span><span style="color:#F00;background-color:#FAA">C</span><span style="color:#F00;background-color:#FAA">.</span><span style="color:#F00;background-color:#FAA">&amp;</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">c</span><span style="color:#F00;background-color:#FAA">h</span><span style="color:#F00;background-color:#FAA">_</span><span style="color:#F00;background-color:#FAA">p</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">y</span><span style="color:#F00;background-color:#FAA">m</span><span style="color:#F00;background-color:#FAA">e</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">t</span>[<span style="color:#F00;background-color:#FAA">l</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">s</span><span style="color:#F00;background-color:#FAA">t</span><span style="color:#F00;background-color:#FAA">_</span><span style="color:#F00;background-color:#FAA">n</span><span style="color:#F00;background-color:#FAA">a</span><span style="color:#F00;background-color:#FAA">m</span><span style="color:#F00;background-color:#FAA">e</span>]<span style="color:#F00;background-color:#FAA">=</span><span style="color:#F00;background-color:#FAA">D</span><span style="color:#F00;background-color:#FAA">o</span><span style="color:#F00;background-color:#FAA">e</span></pre></td>
 </tr></table>
 
       </code>
@@ -245,7 +297,7 @@ X-Authentication: <i>3f898544c32fe878e46e40e7186364a5</i></code>
     
       <h5>Headers</h5>
       <code>Content-Type: <i>application/json; charset=utf-8</i>
-Content-Length: <i>94</i></code>
+Content-Length: <i>106</i></code>
     
 
     <h5>Status code (<a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">wiki</a>)</h5>
@@ -267,11 +319,11 @@ Content-Length: <i>94</i></code>
 <a href="#n7" name="n7">7</a>
 </pre></td>
   <td class="code"><pre>{
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>routing</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">12345678</span><span style="color:#710">&quot;</span></span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>routing_nr</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">12345678</span><span style="color:#710">&quot;</span></span>,
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>account_nr</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">87654321</span><span style="color:#710">&quot;</span></span>,
   <span style="color:#606"><span style="color:#404">&quot;</span><span>first_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">John</span><span style="color:#710">&quot;</span></span>,
   <span style="color:#606"><span style="color:#404">&quot;</span><span>middle_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">C.</span><span style="color:#710">&quot;</span></span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>last_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Doe</span><span style="color:#710">&quot;</span></span>,
-  <span style="color:#606"><span style="color:#404">&quot;</span><span>address</span><span style="color:#404">&quot;</span></span> : <span style="color:#088">null</span>
+  <span style="color:#606"><span style="color:#404">&quot;</span><span>last_name</span><span style="color:#404">&quot;</span></span> : <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">Doe</span><span style="color:#710">&quot;</span></span>
 }</pre></td>
 </tr></table>
 
