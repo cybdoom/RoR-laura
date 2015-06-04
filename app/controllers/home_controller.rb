@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
+  # @description Current User's dashboard
   def dashboard
-    render text: I18n.t('welcome')
+    respond_with_interaction Dashboard::Dashboard, params
   end
 end

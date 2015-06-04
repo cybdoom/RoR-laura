@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'ACH Payment:', type: :request do
+describe 'Dashboard:', type: :request do
   let (:headers) {
     {
       'X-DEVICE-ID'           => '1111111',
@@ -38,48 +38,20 @@ describe 'ACH Payment:', type: :request do
     }
   }
 
-  let(:valid_ach_payment_params) {
-    {
-      ach_payment: {
-        routing: '12345678'
-      }
-    }
-  }
-
-  let(:invalid_ach_payment_params) {
-    {
-      ach_payment: {
-        routing: '12345678'*300
-      }
-    }
-  }
-
   before :each do
     User.delete_all
     user = User.create valid_user_params.update(devices: authenticated_device)
   end
 
-  context 'create new' do
+  context 'current' do
     it 'with valid params' do
-      post ach_payments_path, valid_ach_payment_params, authenticated_headers
+      get root_path, {}, authenticated_headers
       response_hash = JSON.parse(response.body)
 
-      ach_payment = valid_ach_payment_params[:ach_payment]
       expect(response.status).to eq(200)
-      expect(response_hash['routing']).to eq(ach_payment[:routing])
-      expect(response_hash['address']).to eq(valid_user_params[:address])
-      expect(response_hash['first_name']).to eq(valid_user_params[:first_name])
-
-    end
-
-    it 'with invalid params', :skip_reqres do
-      post ach_payments_path, invalid_ach_payment_params, authenticated_headers
-      response_hash = JSON.parse(response.body)
-
-      ach_payment = valid_ach_payment_params[:ach_payment]
-      expect(response.status).to eq(422)
-      expect(response_hash['error']).to eq( "Routing is too long (maximum is 255 characters)")
-
+      expect(response_hash['news_from_ward47'].count).to eq(4)
+      expect(response_hash['news_from_mayer'].count).to eq(4)
+      expect(response_hash['payment_alert'].count).to eq(2)
     end
   end
 
