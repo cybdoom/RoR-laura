@@ -41,7 +41,7 @@ describe 'Credit card:', type: :request do
   let(:cc_params) {
     {
       credit_card: {
-        cc_number: 112233,
+        cc_number: CreditCardValidations::Factory.random(:mastercard),
         month: 'Jan',
         year: 2014,
         cvv: 321,
@@ -53,7 +53,7 @@ describe 'Credit card:', type: :request do
   let(:cc_params_other) {
     {
       credit_card: {
-        cc_number: 554433,
+        cc_number: CreditCardValidations::Factory.random(:visa),
         month: 'Dec',
         year: 2015,
         cvv: 987,

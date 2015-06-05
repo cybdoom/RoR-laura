@@ -71,7 +71,7 @@ ALTER SEQUENCE ach_payments_id_seq OWNED BY ach_payments.id;
 
 CREATE TABLE credit_cards (
     id integer NOT NULL,
-    cc_number integer,
+    cc_number character varying,
     month character varying,
     year integer,
     cvv character varying,
@@ -302,4 +302,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150602162951');
 INSERT INTO schema_migrations (version) VALUES ('20150604083941');
 
 INSERT INTO schema_migrations (version) VALUES ('20150604142801');
+
+INSERT INTO schema_migrations (version) VALUES ('20150605071803');
 

@@ -41,7 +41,7 @@ describe 'ACH Payment:', type: :request do
   let(:another_valid_ach_payment_params) {
     {
       ach_payment: {
-        account_nr: '4433555'.reverse,
+        account_nr: CreditCardValidations::Factory.random(:amex),
         routing_nr: '4433555',
         first_name: valid_user_params[:first_name],
         middle_name: valid_user_params[:middle_name],
@@ -53,7 +53,7 @@ describe 'ACH Payment:', type: :request do
   let(:valid_ach_payment_params) {
     {
       ach_payment: {
-        account_nr: '12345678'.reverse,
+        account_nr: CreditCardValidations::Factory.random(:visa),
         routing_nr: '12345678',
         first_name: valid_user_params[:first_name],
         middle_name: valid_user_params[:middle_name],
