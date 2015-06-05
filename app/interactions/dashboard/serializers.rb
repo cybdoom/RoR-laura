@@ -1,12 +1,14 @@
 module Dashboard::Serializers
+  include Bill::Serializers
+
+  def payment_alerts
+    @current_user.bills.due_soon.map{|b| serialize_bill_for_dashboard b }
+  end
 
   def serialize_dashboard dashboard
     {
-      payment_alert: [
-        { bill_type: 'Parking ticket', due_date: (Date.today + 1.days) },
-        { bill_type: 'Water bill', due_date: (Date.today + 2.days) }
-      ],
-      news_from_ward47:[
+      payment_alert: payment_alerts,
+      news_from_ward47: [
         {
           published_date: (Date.today - 4.days),
           content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit,
