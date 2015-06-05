@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'bcrypt-ruby',             '3.1.5'
-gem 'coffee-rails',            '~> 4.1.0'
 gem 'jquery-rails',            '4.0.3'
 gem 'libv8',                   '3.16.14.7'
 gem 'oj',                      '2.12.8'

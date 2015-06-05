@@ -26,9 +26,10 @@ Rails.application.routes.draw do
   resources :credit_cards, only: [:create, :update, :destroy, :index]
 
  # ACH Payments
-  get '/ach_payments' => 'ach_payments#index'
-  post '/ach_payments' => 'ach_payments#create'
+  resources :ach_payments, only: [:create, :index]
 
+  # Bills
+  resources :bills, only: [:create, :index]
 
   root 'home#dashboard'
 
