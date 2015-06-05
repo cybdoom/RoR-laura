@@ -17,8 +17,14 @@ class BillsController < ApplicationController
 
 
   # @description Returns list of bills
+  # @param bill_type  String Can be one of:
+  # parking_ticket, water_bill, vehicle_ticket
+  # @param status  String Can be one of:
+  # paid, unpayed
+  # @param payment_status  String Can be one of:
+  # payed, overdue, due_soon, due_later
   def index
-    # respond_with_interaction AchPayment::Index, params
+    respond_with_interaction Bill::Index, params
   end
 
   private

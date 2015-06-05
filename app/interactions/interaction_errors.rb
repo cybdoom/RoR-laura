@@ -2,6 +2,8 @@ module InteractionErrors
   InvalidUserError = Class.new(StandardError)
   InvalidCredentialsError = Class.new(StandardError)
 
+  InvalidBillParamsError = Class.new(StandardError)
+
   CreditCardNotFound = Class.new(StandardError)
 
 
