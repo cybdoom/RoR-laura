@@ -38,9 +38,36 @@ describe 'Dashboard:', type: :request do
     }
   }
 
+
+  let(:valid_parking_ticket) {
+    {
+      bill: {
+        bill_type: :parking_ticket,
+        status: :payed,
+        payment_status: :due_soon,
+        payed_amount: 123.45,
+        payed_date: Date.today,
+      }
+    }
+  }
+
+  let(:valid_water_bill) {
+    {
+      bill: {
+        bill_type: :water_bill,
+        status: :unpayed,
+        payment_status: :due_soon,
+        payed_amount: 123.45,
+        payed_date: Date.today,
+      }
+    }
+  }
   before :each do
     User.delete_all
     user = User.create valid_user_params.update(devices: authenticated_device)
+
+    user.bills.create valid_parking_ticket[:bill]
+    user.bills.create valid_water_bill[:bill]
   end
 
   context 'current' do

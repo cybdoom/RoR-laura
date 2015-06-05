@@ -14,4 +14,5 @@ class Bill < ActiveRecord::Base
 
   belongs_to :user
 
+  scope :due_soon, -> { where payment_status: :due_soon }
 end

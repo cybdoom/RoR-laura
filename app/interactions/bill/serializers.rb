@@ -14,6 +14,7 @@ module Bill::Serializers
     bill_json.merge bill_user_info(bill)
   end
 
+
   def bill_user_info bill
     case bill.bill_type
       when 'parking_ticket'
@@ -23,4 +24,7 @@ module Bill::Serializers
     end
   end
 
+ def serialize_bill_for_dashboard bill
+    serialize_bill(bill).slice :bill_type, :payed_date
+ end
 end
