@@ -3,13 +3,12 @@ class Users::RegistrationsController < ApplicationController
 
   # @description implements first registration step
   # @param user[user_id] required String Should be uniq
-  # @param user[phone] required String User's phone nr
   # @param user[email] required String User's email
   # @param user[password] required String User's password, min length 8 chars
   # @param user[password_confirmation] required String User's password confirmation, min length 8 chars
   def create
     user_params = params.require(:user).permit(
-      :user_id, :email, :phone, :password, :password_confirmation)
+      :user_id, :email, :password, :password_confirmation)
     respond_with_interaction User::RegistrationInteraction, user_params
 
   rescue InteractionErrors::ActiveModelError => e

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :password, presence:{ on: :create }
   validates :password, length: {minimum: 8}, allow_nil: { on: :update }
 
-  validates :user_id, :email, :user_id, :phone, presence: true
+  validates :user_id, :email, :user_id, presence: true
 
   validates :email,
     format: { with: RE_EMAIL, message: I18n.t('user.errors.invalid_email')}
