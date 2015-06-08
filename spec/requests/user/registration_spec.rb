@@ -8,6 +8,7 @@ RSpec.describe 'Register a new user', type: :request do
     it 'First step' do
       post '/users/registrations', new_user_request, LauraSpecHelper.ios_device
       response_hash =  JSON.parse(response.body)
+
       expect(response.status).to eq(200)
       expect(response_hash['email']).to eq(LauraSpecHelper.valid_user_params[:email])
       expect(response_hash['authentication_token'].length).to eq(32)
@@ -16,6 +17,7 @@ RSpec.describe 'Register a new user', type: :request do
     it 'invalid headers sent', :skip_reqres do
       post '/users/registrations', new_user_request
       response_hash =  JSON.parse(response.body)
+
       expect(response.status).to eq(422)
       expect(response_hash['error']).to eq(I18n.t('user.errors.invalid_headers'))
     end

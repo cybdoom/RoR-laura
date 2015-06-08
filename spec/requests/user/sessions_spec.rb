@@ -56,14 +56,14 @@ RSpec.describe 'User sessions:', type: :request do
 
     before :each do
       User.delete_all
-      User.create LauraSpecHelper.valid_user_params
+      User.create LauraSpecHelper.valid_user_params.update(phone: '111222333')
     end
 
     context 'with phone' do
       let(:valid_signin_params) {
         {
           auth_credentials: {
-            phone:     LauraSpecHelper.valid_user_params[:phone],
+            phone:     '111222333',
             password:  LauraSpecHelper.valid_user_params[:password]
           }
         }

@@ -4,7 +4,6 @@ module LauraSpecHelper
     {
       email:                  'user@gmail.com',
       user_id:                'user@gmail.com',
-      phone:                  '111111111111',
       password:               '123uu123',
       password_confirmation:  '123uu123'
     }
