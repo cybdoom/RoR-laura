@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   class << self
     def find_by_auth_token device_id, token
-      user = where( "devices -> ? ->> 'authentication_token' = ?", device_id, token).first
+      user = where("devices -> ? ->> 'authentication_token' = ?", device_id, token).first
       return unless user
       user
     end

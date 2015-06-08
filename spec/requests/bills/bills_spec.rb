@@ -1,35 +1,11 @@
 require 'rails_helper'
 
 describe 'Bills:', type: :request do
-  let (:headers) {
-    {
-      'X-DEVICE-ID'           => '1111111',
-      'X-MOBILE-PLATFORM'     => 'IOS',
-      'X-APPLICATION-NAME'    => 'Laura IOS App',
-      'X-APPLICATION-VERSION' => '1',
-      'X-DEVICE-TIME-ZONE'    => '+1',
-      'X-DEVICE-LOCALE'       => 'en-us',
-    }
-  }
-
-  let (:valid_user_params) {
-    {
-      email:                  'user@gmail.com',
-      user_id:                'user@gmail.com',
-      phone:                  '111111111111',
-      password:               '123uu123',
-      password_confirmation:  '123uu123',
-      first_name: 'John',
-      middle_name: 'C.',
-      last_name: 'Doe',
-      address: 'Washington, 1st 1',
-      driver_license: '12345678',
-      license_plate_number: '98765432'
-    }
-  }
 
   let(:token) {"3f898544c32fe878e46e40e7186364a5"}
-  let(:authenticated_headers) { headers.update 'X-AUTHENTICATION' => token }
+  let(:authenticated_headers) {
+    LauraSpecHelper.ios_device.update 'X-AUTHENTICATION' => token
+  }
 
   let(:authenticated_device) {
     {
@@ -69,7 +45,8 @@ describe 'Bills:', type: :request do
 
   before :each do
     User.delete_all
-    @user = User.create valid_user_params.update(devices: authenticated_device)
+    @user = User.create LauraSpecHelper.valid_user_params.
+      update(devices: authenticated_device)
   end
 
   context 'lists of' do
@@ -146,7 +123,8 @@ describe 'Bills:', type: :request do
       water_bill = valid_water_bill[:bill]
       expect(response.status).to eq(200)
       expect(response_hash['bill_status']).to eq(water_bill[:bill_status])
-      expect(response_hash['driver_license']).to eq(valid_user_params[:driver_license])
+      driver_license = LauraSpecHelper.valid_user_params[:driver_license]
+      expect(response_hash['driver_license']).to eq(driver_license)
       expect(response_hash['payed_amount']).to eq(water_bill[:payed_amount])
     end
 
@@ -180,7 +158,8 @@ describe 'Bills:', type: :request do
       parking_ticket = valid_parking_ticket[:bill]
       expect(response.status).to eq(200)
       expect(response_hash['bill_status']).to eq(parking_ticket[:bill_status])
-      expect(response_hash['driver_license']).to eq(valid_user_params[:driver_license])
+      driver_license = LauraSpecHelper.valid_user_params[:driver_license]
+      expect(response_hash['driver_license']).to eq(driver_license)
       expect(response_hash['payed_amount']).to eq(parking_ticket[:payed_amount])
     end
 

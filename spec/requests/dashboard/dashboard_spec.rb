@@ -1,32 +1,9 @@
 require 'rails_helper'
 
 describe 'Dashboard:', type: :request do
-  let (:headers) {
-    {
-      'X-DEVICE-ID'           => '1111111',
-      'X-MOBILE-PLATFORM'     => 'IOS',
-      'X-APPLICATION-NAME'    => 'Laura IOS App',
-      'X-APPLICATION-VERSION' => '1',
-      'X-DEVICE-TIME-ZONE'    => '+1',
-      'X-DEVICE-LOCALE'       => 'en-us',
-    }
-  }
-
-  let (:valid_user_params) {
-    {
-      email:                  'user@gmail.com',
-      user_id:                'user@gmail.com',
-      phone:                  '111111111111',
-      password:               '123uu123',
-      password_confirmation:  '123uu123',
-      first_name: 'John',
-      middle_name: 'C.',
-      last_name: 'Doe'
-    }
-  }
 
   let(:token) {"3f898544c32fe878e46e40e7186364a5"}
-  let(:authenticated_headers) { headers.update 'X-AUTHENTICATION' => token }
+  let(:authenticated_headers) { LauraSpecHelper.ios_device.update 'X-AUTHENTICATION' => token }
 
   let(:authenticated_device) {
     {
@@ -62,10 +39,11 @@ describe 'Dashboard:', type: :request do
       }
     }
   }
+
   before :each do
     User.delete_all
-    user = User.create valid_user_params.update(devices: authenticated_device)
-
+    user = User.create LauraSpecHelper.valid_user_params.
+      update(devices: authenticated_device)
     user.bills.create valid_parking_ticket[:bill]
     user.bills.create valid_water_bill[:bill]
   end

@@ -1,32 +1,12 @@
 require 'rails_helper'
 
 describe 'Credit card:', type: :request do
-  let (:headers) {
-    {
-      'X-DEVICE-ID'           => '1111111',
-      'X-MOBILE-PLATFORM'     => 'IOS',
-      'X-APPLICATION-NAME'    => 'Laura IOS App',
-      'X-APPLICATION-VERSION' => '1',
-      'X-DEVICE-TIME-ZONE'    => '+1',
-      'X-DEVICE-LOCALE'       => 'en-us',
-    }
-  }
-
-  let (:valid_user_params) {
-    {
-      email:                  'user@gmail.com',
-      user_id:                'user@gmail.com',
-      phone:                  '111111111111',
-      password:               '123uu123',
-      password_confirmation:  '123uu123',
-      first_name: 'John',
-      middle_name: 'C.',
-      last_name: 'Doe'
-    }
-  }
 
   let(:token) {"3f898544c32fe878e46e40e7186364a5"}
-  let(:authenticated_headers) { headers.update 'X-AUTHENTICATION' => token }
+
+  let(:authenticated_headers) {
+    LauraSpecHelper.ios_device.update 'X-AUTHENTICATION' => token
+  }
 
   let(:authenticated_device) {
     {
@@ -75,24 +55,30 @@ describe 'Credit card:', type: :request do
 
   before :each do
     User.delete_all
-    user = User.create valid_user_params.update(devices: authenticated_device)
+    @user = User.create LauraSpecHelper.valid_user_params.
+      update(devices: authenticated_device)
   end
 
 
   context 'List' do
+
+    before :each do
+      @user.credit_cards.create(cc_params_other[:credit_card])
+      @user.credit_cards.create(cc_params[:credit_card])
+    end
+
     it 'list' do
-       User.first.credit_cards.create(cc_params_other[:credit_card])
-       User.first.credit_cards.create(cc_params[:credit_card])
-
       get credit_cards_path, {}, authenticated_headers
-
-
       response_hash =  JSON.parse(response.body)
+
       expect(response_hash.length).to eq(2)
       expect(response.status).to eq(200)
+    end
 
+    after :each do
       CreditCard.delete_all
     end
+
   end
 
   context 'actions - ' do
@@ -111,21 +97,23 @@ describe 'Credit card:', type: :request do
         response_hash = JSON.parse(response.body)
 
         expect(response.status).to eq(404)
-        expect(response_hash['error']).to  eq(I18n.t('credit_card.errors.not_found'))
+        msg = I18n.t('credit_card.errors.not_found')
+        expect(response_hash['error']).to  eq(msg)
       end
 
       it 'with valid params' do
         delete credit_card_path(credit_card.id), {}, authenticated_headers
         response_hash = JSON.parse(response.body)
 
-        expect(response_hash['message']).to  eq(I18n.t('credit_card.notifications.destroyed'))
+        msg = I18n.t('credit_card.notifications.destroyed')
+        expect(response_hash['message']).to  eq(msg)
       end
     end #delete
 
     context 'update ' do
 
       it 'with valid params' do
-        patch credit_card_path(credit_card.id), cc_params_other, authenticated_headers
+        patch credit_card_path(credit_card), cc_params_other, authenticated_headers
         response_hash = JSON.parse(response.body)
 
         card = cc_params_other[:credit_card]
