@@ -1,5 +1,14 @@
 module LauraSpecHelper
 
+  def LauraSpecHelper.another_valid_user_params
+    {
+      email:                  'user1@gmail.com',
+      user_id:                'user1@gmail.com',
+      password:               '123uu123',
+      password_confirmation:  '123uu123'
+    }
+  end
+
   def LauraSpecHelper.valid_user_params
     {
       email:                  'user@gmail.com',

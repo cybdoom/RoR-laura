@@ -3,10 +3,25 @@ require 'rails_helper'
 RSpec.describe 'User sessions:', type: :request do
 
   context 'actions - ' do
-    let(:token) { "3f898544c32fe878e46e40e7186364a5" }
 
+    let(:token) { "3f898544c32fe878e46e40e7186364a5" }
     let(:authenticated_headers) {
       LauraSpecHelper.ios_device.update 'X-AUTHENTICATION' => token
+    }
+
+    let(:another_token) { "3f898544c32fe878e46e40e7186364a1" }
+    let(:another_authenticated_headers) {
+      LauraSpecHelper.android_device.update 'X-AUTHENTICATION' => another_token
+    }
+
+    let(:another_authenticated_device) {
+      {
+        '222222' => {
+          platform: 'Android',
+          app_name: 'Laura Android App',
+          authentication_token: another_token
+        }
+      }
     }
 
     let(:authenticated_device) {
@@ -17,6 +32,10 @@ RSpec.describe 'User sessions:', type: :request do
           authentication_token: token
         }
       }
+    }
+
+    let(:another_user_authenticated_ios) {
+      LauraSpecHelper.valid_user_params.update(devices: another_authenticated_headers)
     }
 
     let(:user_authenticated_ios) {
@@ -56,6 +75,7 @@ RSpec.describe 'User sessions:', type: :request do
 
     before :each do
       User.delete_all
+      User.create LauraSpecHelper.another_valid_user_params
       User.create LauraSpecHelper.valid_user_params.update(phone: '111222333')
     end
 
@@ -97,8 +117,16 @@ RSpec.describe 'User sessions:', type: :request do
     end
 
 
-
     context 'with email' do
+      let(:another_valid_signin_params) {
+        {
+          auth_credentials: {
+            email:     LauraSpecHelper.another_valid_user_params[:email],
+            password:  LauraSpecHelper.another_valid_user_params[:password]
+          }
+        }
+      }
+
       let(:valid_signin_params) {
         {
           auth_credentials: {
@@ -132,6 +160,26 @@ RSpec.describe 'User sessions:', type: :request do
 
         email = LauraSpecHelper.valid_user_params[:email]
         expect(response_hash['email']).to eq(email)
+      end
+
+      it 'valid 2 users logged in within same device', :skip_reqres do
+        # sign in 1st user
+        post users_sessions_path, valid_signin_params, LauraSpecHelper.ios_device
+        response_hash =  JSON.parse(response.body)
+
+        email = LauraSpecHelper.valid_user_params[:email]
+        first_auth_token = response_hash['authentication_token']
+        expect(response_hash['email']).to eq(email)
+
+        # sign in 2nd user
+        post users_sessions_path, another_valid_signin_params, LauraSpecHelper.ios_device
+        response_hash =  JSON.parse(response.body)
+
+        second_auth_token = response_hash['authentication_token']
+        email = LauraSpecHelper.another_valid_user_params[:email]
+        expect(response_hash['email']).to eq(email)
+
+        expect(first_auth_token).not_to eq(second_auth_token)
       end
     end
 
