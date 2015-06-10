@@ -20,7 +20,7 @@ set :sidekiq_processes,  1
 set :puma_rackup, -> { File.join(current_path, 'config.ru') }
 set :puma_state, "#{current_path}/tmp/pids/puma.state"
 set :puma_pid, "#{current_path}/tmp/pids/puma.pid"
-set :puma_bind, ["unix:///tmp/sockets/laura.sock"]    #accept array for multi-bind
+set :puma_bind, ["unix://#{current_path}/tmp/sockets/laura.sock"]    #accept array for multi-bind
 set :puma_access_log, "#{current_path}/log/puma_error.log"
 set :puma_error_log, "#{current_path}/log/puma_access.log"
 set :puma_role, :app
