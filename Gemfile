@@ -12,6 +12,8 @@ gem 'therubyracer',            '0.12.2'
 gem 'uglifier',                '>= 1.3.0'
 gem 'puma',                    '2.11.3'
 gem 'credit_card_validations', '2.0.2'
+gem 'grocer', '0.6.1'
+gem 'gcm', '0.1.0'
 # Gems for background jobs
 # gem 'slim',          '>= 1.1.0'
 # gem 'sinatra',       '>= 1.3.0'

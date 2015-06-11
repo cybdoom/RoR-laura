@@ -7,7 +7,8 @@ class Users::SessionsController < ApplicationController
   # @param auth_credentials[phone] required String User's phone
   # @param auth_credentials[password] required String User's password
   def create
-    auth_params = params.require(:auth_credentials).permit(:email, :phone, :password)
+    auth_params = params.require(:auth_credentials).
+      permit :email, :password, :phone
     respond_with_interaction User::SignInInteraction, auth_params
 
   rescue InteractionErrors::InvalidUserError

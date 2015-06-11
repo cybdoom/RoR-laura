@@ -162,6 +162,7 @@ RSpec.describe 'User sessions:', type: :request do
         expect(response_hash['email']).to eq(email)
       end
 
+
       it 'valid 2 users logged in within same device', :skip_reqres do
         # sign in 1st user
         post users_sessions_path, valid_signin_params, LauraSpecHelper.ios_device

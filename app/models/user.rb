@@ -25,10 +25,12 @@ class User < ActiveRecord::Base
 
 
   class << self
+    def find_for_authentication the_id
+      where('email = :the_id or phone = :the_id', the_id: the_id).first
+    end
+
     def find_by_auth_token device_id, token
-      user = where("devices -> ? ->> 'authentication_token' = ?", device_id, token).first
-      return unless user
-      user
+      where("devices -> ? ->> 'authentication_token' = ?", device_id, token).first
     end
   end # Class methods
 

@@ -26,6 +26,7 @@ module LauraSpecHelper
       'HTTP_X_APPLICATION_VERSION' => '1',
       'HTTP_X_DEVICE_TIME_ZONE'    => '+1',
       'HTTP_X_DEVICE_LOCALE'       => 'en-us',
+      'HTTP_X_PUSH_NOTIFICATION_TOKEN' => '999999'
     }
   end
 
@@ -34,6 +35,7 @@ module LauraSpecHelper
       'X-DEVICE-ID'           => '1111111',
       'X-MOBILE-PLATFORM'     => 'IOS',
       'X-APPLICATION-NAME'    => 'Laura IOS App',
+      'HTTP_X_PUSH_NOTIFICATION_TOKEN' => '88888888',
       'X-APPLICATION-VERSION' => '1',
       'X-DEVICE-TIME-ZONE'    => '+1',
       'X-DEVICE-LOCALE'       => 'en-us',

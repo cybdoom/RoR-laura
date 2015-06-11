@@ -17,12 +17,18 @@ module HeadersMixin
     HTTP_X_APPLICATION_VERSION
     HTTP_X_DEVICE_TIME_ZONE
     HTTP_X_DEVICE_LOCALE
+    HTTP_X_PUSH_NOTIFICATION_TOKEN
     X-DEVICE-ID
     X-MOBILE-PLATFORM
     X-APPLICATION-NAME
     X-APPLICATION-VERSION
     X-DEVICE-TIME-ZONE
-    X-DEVICE-LOCALE)
+    X-DEVICE-LOCALE
+    X-PUSH-NOTIFICATION-TOKEN)
+
+  def mobile_push_notification_token
+    headers['HTTP_X_PUSH_NOTIFICATION_TOKEN'] || headers['X-PUSH-NOTIFICATION-TOKEN ']
+  end
 
   def mobile_device_id
     headers['HTTP_X_DEVICE_ID'] || headers['X-DEVICE-ID ']
