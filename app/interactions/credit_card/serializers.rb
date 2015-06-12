@@ -1,6 +1,7 @@
 module CreditCard::Serializers
 
   CREDIT_CARD_ATTRIBUTES = %i{
+    id
     cc_number
     month
     year
@@ -16,7 +17,8 @@ module CreditCard::Serializers
   def serialize_credit_card_as_list_item credit_card
     {
       last_digits: credit_card.cc_number.to_s.split('').last(4).join,
-      default_photo: credit_card.cc_type
+      default_photo: credit_card.cc_type,
+      id: credit_card.id
     }
   end
 end
