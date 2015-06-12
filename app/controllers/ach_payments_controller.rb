@@ -4,7 +4,7 @@ class AchPaymentsController < ApplicationController
   # @param ach_payment[routing_nr] required String Routing nr
   # @param ach_payment[account_nr] required String Account nr
   # @param ach_payment[first_name] required String First name
-  # @param ach_payment[middle_name] required String Middle name
+  # @param ach_payment[middle_name] String Middle name
   # @param ach_payment[last_name] required String Last name
   def create
     respond_with_interaction AchPayment::Create, ach_payment_params
