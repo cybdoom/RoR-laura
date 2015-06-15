@@ -35,7 +35,7 @@ SET default_with_oids = false;
 
 CREATE TABLE ach_payments (
     id integer NOT NULL,
-    routing_nr character varying(255),
+    routing_nr character varying,
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -108,10 +108,10 @@ ALTER SEQUENCE bills_id_seq OWNED BY bills.id;
 CREATE TABLE credit_cards (
     id integer NOT NULL,
     cc_number character varying,
-    month character varying(255),
+    month character varying,
     year integer,
-    cvv character varying(255),
-    zipcode character varying(255),
+    cvv character varying,
+    zipcode character varying,
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -143,8 +143,8 @@ ALTER SEQUENCE credit_cards_id_seq OWNED BY credit_cards.id;
 
 CREATE TABLE password_recovery_tokens (
     id integer NOT NULL,
-    token character varying(255),
-    email character varying(255),
+    token character varying,
+    email character varying,
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL

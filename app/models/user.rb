@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
   has_secure_password
   validates_confirmation_of :password
-  validates :email, :phone,  uniqueness: true
+  validates :phone, allow_blank: true, uniqueness: true
+  validates :email, uniqueness: true
   validates :password, presence:{ on: :create }
   validates :password, length: {minimum: 8}, allow_nil: { on: :update }
 
@@ -12,8 +13,8 @@ class User < ActiveRecord::Base
     format: { with: RE_EMAIL, message: I18n.t('user.errors.invalid_email')}
 
   validates :first_name, :middle_name, :last_name, :license_plate_number,
-    :license_plate_state, :driver_license, :driver_license_state, :state, :address,
-    length: { maximum: STRING_LENGTH, allow_blank: true }
+    :license_plate_state, :driver_license, :driver_license_state, :state,
+    :address, length: { maximum: STRING_LENGTH, allow_blank: true }
 
 
   has_many :password_recovery_tokens
