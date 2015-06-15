@@ -4,6 +4,7 @@ module InteractionErrors
 
   InvalidBillParamsError = Class.new(StandardError)
 
+  AchPaymentNotFound = Class.new(StandardError)
   CreditCardNotFound = Class.new(StandardError)
 
 

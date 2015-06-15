@@ -7,4 +7,9 @@ class AchPayment::Interaction < InteractionBase
     serialize_ach_payment(@ach_payment)
   end
 
+
+  def check_ach_payment!
+    @ach_payment = @current_user.ach_payments.find_by id: @args[:id]
+    raise InteractionErrors::AchPaymentNotFound unless @ach_payment
+  end
 end

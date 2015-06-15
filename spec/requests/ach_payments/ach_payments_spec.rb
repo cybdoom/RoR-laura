@@ -73,27 +73,60 @@ describe 'ACH Payment:', type: :request do
     end
   end
 
-  context 'create new' do
-    it 'with valid params' do
-      post ach_payments_path, valid_ach_payment_params, authenticated_headers
-      response_hash = JSON.parse(response.body)
+  context 'actions - ' do
+    context 'delete' do
+      let(:new_ach_payment) {
+        @user.ach_payments.create valid_ach_payment_params[:ach_payment]
+      }
 
-      ach_payment = valid_ach_payment_params[:ach_payment]
-      expect(response.status).to eq(200)
-      expect(response_hash['routing_nr']).to eq(ach_payment[:routing_nr])
-      expect(response_hash['address']).to eq(valid_user_params[:address])
-      expect(response_hash['first_name']).to eq(valid_user_params[:first_name])
+      before :each do
+        new_ach_payment
+      end
 
+      it 'ACH Payment' do
+        expect(AchPayment.count).to eq(1)
+        delete ach_payment_path(new_ach_payment.id), {}, authenticated_headers
+        response_hash =  JSON.parse(response.body)
+
+        msg = I18n.t('ach_payment.notifications.destroyed')
+        expect(response_hash['message']).to include(msg)
+        expect(AchPayment.count).to eq(0)
+      end
+
+      it 'Should get error', :skip_reqres do
+        delete ach_payment_path(12231231), {}, authenticated_headers
+        response_hash =  JSON.parse(response.body)
+
+        expect(response.status).to eq(404)
+        msg = I18n.t('ach_payment.errors.not_found')
+        expect(response_hash['error']).to include(msg)
+      end
     end
 
-    it 'with invalid params', :skip_reqres do
-      post ach_payments_path, invalid_ach_payment_params, authenticated_headers
-      response_hash = JSON.parse(response.body)
 
-      ach_payment = valid_ach_payment_params[:ach_payment]
-      expect(response.status).to eq(422)
 
+    context 'create new' do
+      it 'with valid params' do
+        post ach_payments_path, valid_ach_payment_params, authenticated_headers
+        response_hash = JSON.parse(response.body)
+
+        ach_payment = valid_ach_payment_params[:ach_payment]
+        expect(response.status).to eq(200)
+        expect(response_hash['routing_nr']).to eq(ach_payment[:routing_nr])
+        expect(response_hash['address']).to eq(valid_user_params[:address])
+        expect(response_hash['first_name']).to eq(valid_user_params[:first_name])
+
+      end
+
+      it 'with invalid params', :skip_reqres do
+        post ach_payments_path, invalid_ach_payment_params, authenticated_headers
+        response_hash = JSON.parse(response.body)
+
+        ach_payment = valid_ach_payment_params[:ach_payment]
+        expect(response.status).to eq(422)
+
+      end
     end
+
   end
-
 end
