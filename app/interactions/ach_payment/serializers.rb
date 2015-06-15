@@ -14,7 +14,8 @@ module AchPayment::Serializers
   def serialize_ach_payment_as_list_item ach_payment
     {
       last_digits: ach_payment.account_nr.split('').last(3).join,
-      default_photo: ach_payment.ap_type
+      default_photo: ach_payment.ap_type,
+      id: ach_payment.id
     }
   end
 end
